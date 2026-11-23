@@ -39,6 +39,20 @@ def _probability(rating_difference: float) -> float:
     return 1.0 / (1.0 + 10.0 ** (-rating_difference / 400.0))
 
 
+def order_games(games: pd.DataFrame) -> pd.DataFrame:
+    """Apply the shared baseline game ordering: date, game ID, then game number."""
+    ordered = games.copy()
+    ordered["date"] = pd.to_datetime(ordered["date"], errors="coerce")
+    ordered["_game_number"] = pd.to_numeric(ordered["game"], errors="coerce")
+    if "year" in ordered:
+        ordered["year"] = pd.to_numeric(ordered["year"], errors="coerce")
+    return ordered.sort_values(
+        ["date", "gameid", "_game_number"],
+        kind="stable",
+        na_position="last",
+    ).drop(columns=["_game_number"])
+
+
 def run_team_elo(
     games: pd.DataFrame,
     config: dict | None = None,
@@ -62,16 +76,7 @@ def run_team_elo(
     k_factor = float(config.get("k_factor", 32))
     starting_rating = float(config.get("starting_rating", 1500))
     blue_advantage = float(config.get("blue_side_advantage", 0))
-    ordered = games.copy()
-    ordered["date"] = pd.to_datetime(ordered["date"], errors="coerce")
-    ordered["_game_number"] = pd.to_numeric(ordered["game"], errors="coerce")
-    ordered["year"] = pd.to_numeric(ordered["year"], errors="coerce")
-    ordered = ordered.sort_values(
-        ["date", "gameid", "_game_number"],
-        kind="stable",
-        na_position="last",
-    )
-    ordered = ordered.drop(columns=["_game_number"])
+    ordered = order_games(games)
 
     ratings_by_key: dict[str, float] = {}
     labels_by_key: dict[str, tuple[object, object]] = {}

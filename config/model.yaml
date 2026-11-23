@@ -1,6 +1,17 @@
 k_factor: 32
 starting_rating: 1500
 blue_side_advantage: 25
+k_base: 32
+k_min_ratio: 0.25
+k_decay: 20
+role_weights:
+  top: 1
+  jng: 1
+  mid: 1
+  bot: 1
+  sup: 1
+continuity_n: 5
+continuity_bonus: 0
 
 # Series formats can be edited as league seasons change. Observed game numbers
 # extend a configured format when a series contains more games than expected.

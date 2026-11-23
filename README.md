@@ -19,3 +19,9 @@ Run `python -m lol_elo baseline --start-year 2019` after ingestion. Earlier
 games update ratings as burn-in and are excluded from the evaluation metrics.
 Elo parameters and editable series formats are in `config/model.yaml`; game
 probabilities are written to `data/processed/baseline_preds.parquet`.
+
+Run `python -m lol_elo player --start-year 2019` to evaluate the player-level
+model against the team Elo predictions on the same scored games. Role weights,
+experience shrinkage, and roster continuity settings are also in
+`config/model.yaml`; predictions are written to
+`data/processed/player_preds.parquet`.
