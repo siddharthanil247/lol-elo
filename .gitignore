@@ -1,5 +1,6 @@
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/player_aliases.csv
 __pycache__/
 *.py[cod]
 *.egg-info/
