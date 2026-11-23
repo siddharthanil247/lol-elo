@@ -1,6 +1,10 @@
 import pandas as pd
 
-from lol_elo.player_elo import _win_probability, run_player_elo
+from lol_elo.player_elo import (
+    _convert_player_region_rating,
+    _win_probability,
+    run_player_elo,
+)
 
 CONFIG = {
     "starting_rating": 1500,
@@ -119,3 +123,67 @@ def test_substitute_updates_but_absent_regular_starter_does_not() -> None:
     assert ratings.loc["playerid:alpha-sub-top", "games_played"] == 1
     assert ratings.loc["playerid:alpha-top", "rating"] != 1500
     assert ratings.loc["playerid:alpha-sub-top", "rating"] != 1500
+
+
+def test_international_win_updates_both_region_offsets() -> None:
+    games = pd.DataFrame(
+        [
+            {
+                **_game("g1", 1, "2024-01-01", "Alpha", "KR Other", "Alpha"),
+                "league": "LCK",
+            },
+            {
+                **_game("g2", 1, "2024-01-02", "Beta", "CN Other", "Beta"),
+                "league": "LPL",
+            },
+            {
+                **_game("g3", 1, "2024-05-01", "Alpha", "Beta", "Alpha"),
+                "league": "WLDs",
+            },
+        ]
+    )
+    players = pd.DataFrame(
+        _roster_rows("g1", "Blue", "alpha")
+        + _roster_rows("g1", "Red", "kr-other")
+        + _roster_rows("g2", "Blue", "beta")
+        + _roster_rows("g2", "Red", "cn-other")
+        + _roster_rows("g3", "Blue", "alpha")
+        + _roster_rows("g3", "Red", "beta")
+    )
+    config = {
+        **CONFIG,
+        "region_strength_enabled": True,
+        "offseason_regression_enabled": False,
+        "continuity_bonus": 0,
+    }
+
+    result = run_player_elo(games, players, config)
+
+    assert result.region_offsets["KR"] > 0
+    assert result.region_offsets["CN"] < 0
+
+
+def test_same_region_game_does_not_change_offsets() -> None:
+    games = pd.DataFrame(
+        [{**_game("g1", 1, "2024-01-01", "Alpha", "Beta", "Alpha"), "league": "LCK"}]
+    )
+    players = pd.DataFrame(
+        _roster_rows("g1", "Blue", "alpha") + _roster_rows("g1", "Red", "beta")
+    )
+
+    result = run_player_elo(
+        games,
+        players,
+        {**CONFIG, "region_strength_enabled": True, "continuity_bonus": 0},
+    )
+
+    assert set(result.region_offsets.values()) == {0.0}
+
+
+def test_region_move_preserves_effective_player_rating() -> None:
+    offsets = {"KR": 24.0, "CN": -11.0}
+    old_rating = 1640.0
+
+    new_rating = _convert_player_region_rating(old_rating, "KR", "CN", offsets)
+
+    assert new_rating + offsets["CN"] == old_rating + offsets["KR"]

@@ -3,6 +3,7 @@
 import argparse
 import sys
 
+from lol_elo.ablation import main as run_ablation
 from lol_elo.baseline import main as run_baseline
 from lol_elo.ingest import main as run_ingest
 from lol_elo.lookup import main as run_lookup
@@ -26,10 +27,14 @@ def main() -> None:
         sys.argv = [sys.argv[0], *sys.argv[2:]]
         run_lookup()
         return
+    if len(sys.argv) > 1 and sys.argv[1] == "ablate":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        run_ablation()
+        return
 
     parser = argparse.ArgumentParser(prog="python -m lol_elo")
     parser.add_argument(
-        "command", choices=["ingest", "baseline", "player", "lookup"]
+        "command", choices=["ingest", "baseline", "player", "lookup", "ablate"]
     )
     parser.parse_args()
 

@@ -28,3 +28,24 @@ international:
   - MSC
 
 international_require_tier1_teams: true
+
+regions:
+  KR:
+    - LCK
+    - OGN
+  CN:
+    - LPL
+  EU:
+    - EU LCS
+    - LEC
+  NA:
+    - NA LCS
+    - LCS
+    - LTA N
+  BR:
+    - CBLOL
+    - LTA S
+  PAC:
+    - LMS
+    - PCS
+    - LCP

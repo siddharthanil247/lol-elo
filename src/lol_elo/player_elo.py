@@ -10,6 +10,7 @@ from typing import NamedTuple
 import pandas as pd
 
 from lol_elo.evaluate import EvaluationResult, evaluate_predictions
+from lol_elo.leagues import load_leagues
 from lol_elo.team_elo import (
     DEFAULT_MODEL_CONFIG_PATH,
     _probability,
@@ -25,6 +26,8 @@ class PlayerEloResult(NamedTuple):
     predictions: pd.DataFrame
     ratings: pd.DataFrame
     role_ratings: pd.DataFrame
+    region_offsets: dict[str, float]
+    region_offset_history: pd.DataFrame
 
 
 def _win_probability(
@@ -32,6 +35,18 @@ def _win_probability(
 ) -> float:
     """Return blue's win probability from team ratings and side advantage."""
     return _probability(blue_rating + blue_advantage - red_rating)
+
+
+def _convert_player_region_rating(
+    rating: float,
+    old_region: str,
+    new_region: str,
+    region_offsets: dict[str, float],
+) -> float:
+    """Convert a player rating while preserving player-plus-region strength."""
+    return rating + region_offsets.get(old_region, 0.0) - region_offsets.get(
+        new_region, 0.0
+    )
 
 
 def _rosters_by_game(
@@ -111,11 +126,20 @@ def _recent_player_keys(players: pd.DataFrame, games: pd.DataFrame) -> set[str]:
     return set(players.loc[active, "player_key"].dropna().astype(str))
 
 
+def _team_key_series(team_ids: pd.Series, team_names: pd.Series) -> pd.Series:
+    ids = team_ids.astype("string").str.strip()
+    names = team_names.astype("string").str.strip().str.lower()
+    has_id = ids.notna() & ids.ne("")
+    has_name = names.notna() & names.ne("")
+    return ("teamid:" + ids).where(has_id, ("teamname:" + names).where(has_name))
+
+
 def run_player_elo(
     games: pd.DataFrame,
     players: pd.DataFrame,
     config: dict | None = None,
     start_year: int | None = None,
+    leagues_config: dict | None = None,
 ) -> PlayerEloResult:
     """Predict games from participating-player ratings, then update those players."""
     config = config or load_model_config()
@@ -150,6 +174,24 @@ def run_player_elo(
     if continuity_n < 0:
         raise ValueError("continuity_n cannot be negative")
     continuity_bonus = float(config.get("continuity_bonus", 0))
+    region_enabled = bool(config.get("region_strength_enabled", False))
+    k_region = float(config.get("k_region", 0.1))
+    offseason_enabled = bool(config.get("offseason_regression_enabled", False))
+    regress_frac = float(config.get("regress_frac", 0.2))
+    new_season_m = int(config.get("new_season_m", 10))
+    new_season_k_mult = float(config.get("new_season_k_mult", 1.5))
+    if k_region < 0 or not 0 <= regress_frac <= 1 or new_season_m < 0:
+        raise ValueError("Invalid regional or offseason configuration")
+    if new_season_k_mult < 0:
+        raise ValueError("new_season_k_mult cannot be negative")
+    leagues_config = leagues_config or load_leagues()
+    region_leagues = leagues_config.get("regions", {})
+    league_regions = {
+        league: region
+        for region, league_names in region_leagues.items()
+        for league in league_names
+    }
+    region_offsets = {region: 0.0 for region in region_leagues}
 
     ordered = order_games(games)
     ordered["year"] = pd.to_numeric(ordered["year"], errors="coerce")
@@ -167,9 +209,18 @@ def run_player_elo(
     games_played: dict[str, int] = {}
     latest_roles: dict[str, str] = {}
     team_history: dict[str, deque[frozenset[str]]] = {}
+    team_regions: dict[tuple[object, str], str] = {}
+    player_regions: dict[str, str] = {}
+    seen_seasons: dict[str, set[object]] = {}
+    season_games_played: dict[tuple[str, object], int] = {}
     predictions = []
+    offset_snapshots = []
+    last_position_by_year = {}
+    for position, season in enumerate(ordered["year"]):
+        if pd.notna(season):
+            last_position_by_year[season] = position
 
-    for game in ordered.itertuples(index=False):
+    for position, game in enumerate(ordered.itertuples(index=False)):
         values = game._asdict()
         gameid = str(values["gameid"])
         game_rosters = rosters.get(gameid)
@@ -181,6 +232,17 @@ def run_player_elo(
         red_roster = game_rosters["red"]
         blue_team_key = _team_key(values.get("blue_team_id"), values["blue_team"])
         red_team_key = _team_key(values.get("red_team_id"), values["red_team"])
+        season = values["year"] if pd.notna(values["year"]) else None
+        season_key = int(season) if season is not None else None
+        league = str(values.get("league", ""))
+        direct_region = league_regions.get(league)
+        if direct_region is not None:
+            blue_region = red_region = direct_region
+        elif season_key is not None:
+            blue_region = team_regions.get((season_key, blue_team_key))
+            red_region = team_regions.get((season_key, red_team_key))
+        else:
+            blue_region = red_region = None
         winner_key = _team_key(values.get("winner_team_id"), values["winner"])
         if winner_key == blue_team_key:
             actual_blue_win = 1
@@ -188,6 +250,30 @@ def run_player_elo(
             actual_blue_win = 0
         else:
             raise ValueError(f"Winner does not match either team in game {gameid}")
+
+        for roster, region in (
+            (blue_roster, blue_region),
+            (red_roster, red_region),
+        ):
+            for player_key, _ in roster:
+                if offseason_enabled and season_key is not None:
+                    player_seasons = seen_seasons.setdefault(player_key, set())
+                    if season_key not in player_seasons:
+                        old_rating = player_ratings.get(player_key, starting_rating)
+                        player_ratings[player_key] = starting_rating + (
+                            old_rating - starting_rating
+                        ) * (1 - regress_frac)
+                        player_seasons.add(season_key)
+                if region_enabled and region is not None:
+                    old_region = player_regions.get(player_key)
+                    if old_region is not None and old_region != region:
+                        player_ratings[player_key] = _convert_player_region_rating(
+                            player_ratings.get(player_key, starting_rating),
+                            old_region,
+                            region,
+                            region_offsets,
+                        )
+                    player_regions[player_key] = region
 
         blue_continuity = sum(
             any(
@@ -211,6 +297,18 @@ def run_player_elo(
         )
         blue_pre += continuity_bonus * (blue_continuity / 5)
         red_pre += continuity_bonus * (red_continuity / 5)
+        blue_region_offset_pre = (
+            region_offsets.get(blue_region, 0.0)
+            if region_enabled and blue_region is not None
+            else 0.0
+        )
+        red_region_offset_pre = (
+            region_offsets.get(red_region, 0.0)
+            if region_enabled and red_region is not None
+            else 0.0
+        )
+        blue_pre += blue_region_offset_pre
+        red_pre += red_region_offset_pre
         probability = _win_probability(blue_pre, red_pre, blue_advantage)
         blue_error = actual_blue_win - probability
 
@@ -227,16 +325,56 @@ def run_player_elo(
             for player_key, role in roster:
                 played = games_played.get(player_key, 0)
                 shrink = max(k_min_ratio, 1 / (1 + played / k_decay))
-                player_delta = k_base * side_error * role_weights[role] * shrink
+                season_played = (
+                    season_games_played.get((player_key, season_key), 0)
+                    if season_key is not None
+                    else new_season_m
+                )
+                season_multiplier = (
+                    new_season_k_mult
+                    if offseason_enabled and season_played < new_season_m
+                    else 1.0
+                )
+                player_delta = (
+                    k_base
+                    * side_error
+                    * role_weights[role]
+                    * shrink
+                    * season_multiplier
+                )
                 player_ratings[player_key] = (
                     player_ratings.get(player_key, starting_rating) + player_delta
                 )
                 games_played[player_key] = played + 1
+                if season_key is not None:
+                    season_count_key = (player_key, season_key)
+                    season_games_played[season_count_key] = (
+                        season_games_played.get(season_count_key, 0) + 1
+                    )
                 latest_roles[player_key] = role
                 if team_key == blue_team_key:
                     blue_change += player_delta
                 else:
                     red_change += player_delta
+
+        region_delta = 0.0
+        if (
+            region_enabled
+            and blue_region is not None
+            and red_region is not None
+            and blue_region != red_region
+        ):
+            region_delta = k_region * k_base * blue_error
+            region_offsets[blue_region] = (
+                region_offsets.get(blue_region, 0.0) + region_delta
+            )
+            region_offsets[red_region] = (
+                region_offsets.get(red_region, 0.0) - region_delta
+            )
+
+        if direct_region is not None and season_key is not None:
+            team_regions[(season_key, blue_team_key)] = direct_region
+            team_regions[(season_key, red_team_key)] = direct_region
 
         year = values["year"]
         predictions.append(
@@ -249,6 +387,11 @@ def run_player_elo(
                 "predicted_blue_win_prob": probability,
                 "blue_rating_pre": blue_pre,
                 "red_rating_pre": red_pre,
+                "blue_region": blue_region,
+                "red_region": red_region,
+                "blue_region_offset_pre": blue_region_offset_pre,
+                "red_region_offset_pre": red_region_offset_pre,
+                "region_rating_change": region_delta,
                 "rating_change_blue": blue_change,
                 "rating_change_red": red_change,
                 "blue_continuity_starters": blue_continuity,
@@ -257,6 +400,11 @@ def run_player_elo(
                 or (pd.notna(year) and year >= start_year),
             }
         )
+        if season_key is not None and last_position_by_year[season] == position:
+            offset_snapshots.extend(
+                {"year": season_key, "region": region, "offset": offset}
+                for region, offset in sorted(region_offsets.items())
+            )
 
     rating_rows = [
         {
@@ -264,11 +412,13 @@ def run_player_elo(
             "playername": player_names.get(player_key),
             "rating": rating,
             "games_played": games_played[player_key],
+            "region": player_regions.get(player_key),
         }
         for player_key, rating in player_ratings.items()
     ]
     ratings = pd.DataFrame(
-        rating_rows, columns=["player_key", "playername", "rating", "games_played"]
+        rating_rows,
+        columns=["player_key", "playername", "rating", "games_played", "region"],
     ).sort_values("rating", ascending=False, kind="stable").reset_index(drop=True)
     role_rows = [
         {
@@ -284,7 +434,13 @@ def run_player_elo(
         role_rows,
         columns=["player_key", "playername", "role", "rating", "games_played"],
     ).sort_values(["role", "rating"], ascending=[True, False], kind="stable")
-    return PlayerEloResult(pd.DataFrame(predictions), ratings, role_ratings)
+    return PlayerEloResult(
+        pd.DataFrame(predictions),
+        ratings,
+        role_ratings,
+        region_offsets,
+        pd.DataFrame(offset_snapshots, columns=["year", "region", "offset"]),
+    )
 
 
 def _comparison_table(
@@ -427,6 +583,24 @@ def main() -> None:
         print(evaluation.series_metrics.to_string(index=False))
     print("\nPlayer Elo vs team Elo on the same scored games:")
     print(comparison.to_string(index=False))
+    print("\nRegional offsets at year ends:")
+    if result.region_offset_history.empty:
+        print("No season snapshots.")
+    else:
+        for year, offsets in result.region_offset_history.groupby("year", sort=False):
+            print(f"\n{year}:")
+            print(offsets[["region", "offset"]].to_string(index=False))
+    print("\nFinal regional offsets:")
+    if result.region_offsets:
+        print(
+            pd.Series(result.region_offsets, name="offset")
+            .rename_axis("region")
+            .sort_index()
+            .to_string()
+        )
+    else:
+        print("No configured regions.")
+
     role_ratings = result.role_ratings
     if not args.all_time:
         active_keys = _recent_player_keys(players, games)

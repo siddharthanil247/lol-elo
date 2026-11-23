@@ -12,6 +12,12 @@ role_weights:
   sup: 1
 continuity_n: 5
 continuity_bonus: 50
+region_strength_enabled: true
+k_region: 0.1
+offseason_regression_enabled: false
+regress_frac: 0.2
+new_season_m: 10
+new_season_k_mult: 1.5
 
 # Series formats can be edited as league seasons change. Observed game numbers
 # extend a configured format when a series contains more games than expected.
