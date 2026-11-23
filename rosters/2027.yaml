@@ -1,0 +1,1389 @@
+season: 2027
+teams:
+- name: 9z Globant
+  teamid: oe:team:88438eabe047ccf143696ed57b23942
+  league: CBLOL
+  starters:
+    top:
+      name: Nate
+      player_key: playerid:oe:player:8878e7050143a0fe4020498043fcc0d
+    jng:
+      name: Warsor
+      player_key: playerid:oe:player:87ea894dd96c4c4577c7e32bdcd630b
+    mid:
+      name: Aloned
+      player_key: playerid:oe:player:b6c18d4d98745c100d8234a673b0c8a
+    bot:
+      name: FIX
+      player_key: playerid:oe:player:6aaac758332a8320840ac0e5f8fc28e
+    sup:
+      name: Ux
+      player_key: playerid:oe:player:a6ecfc61cbbde3dc4a88a431219809b
+- name: Estral Esports
+  teamid: oe:team:1c81857b6ce6a3c1cd9220fd97e077f
+  league: CBLOL
+  starters:
+    top:
+      name: Bwipo
+      player_key: playerid:oe:player:7e2505960c12cc54c96a0a6efb2e055
+    jng:
+      name: Oddie
+      player_key: playerid:oe:player:de23ee5a66222e1e02da354414f2971
+    mid:
+      name: Envy
+      player_key: playerid:oe:player:a672b5bc1c212a6922418fad18734c1
+    bot:
+      name: Brance
+      player_key: playerid:oe:player:166969943c4ca12527dd5449aab5e8e
+    sup:
+      name: Telas
+      player_key: playerid:oe:player:a5a630a5d4f0d3151f3c98d2d98834b
+- name: Fluxo W7M
+  teamid: oe:team:45c362a0cfc4b81f597b5ab89250df5
+  league: CBLOL
+  starters:
+    top:
+      name: Zothve
+      player_key: playerid:oe:player:6e632d8dfe91b18ecbbcdc028094e5c
+    jng:
+      name: Peach
+      player_key: playerid:oe:player:53841c6e42a6ce77b6f3b80133c9342
+    mid:
+      name: cody
+      player_key: playerid:oe:player:a66db93c9f417a2500c24e689ba0ccc
+    bot:
+      name: BAO
+      player_key: playerid:oe:player:6c1d0c529e73fe4c8b9a5306867c4bf
+    sup:
+      name: Momochi
+      player_key: playerid:oe:player:4dabc9746a3cae241a063d7a1e4d204
+- name: FURIA
+  teamid: oe:team:87e3e1e75839f75a10bbc66e894d806
+  league: CBLOL
+  starters:
+    top:
+      name: Guigo
+      player_key: playerid:oe:player:d61d8a0b25028f787123bfff542d305
+    jng:
+      name: Tatu
+      player_key: playerid:oe:player:6625d682ed10ef5e0e7c6c9e4dd2fc1
+    mid:
+      name: Tutsz
+      player_key: playerid:oe:player:886e8205ac1b091dbf67dbae83b1544
+    bot:
+      name: Ayu
+      player_key: playerid:oe:player:d7a904873d10637ef44afa9c1de83b3
+    sup:
+      name: JoJo
+      player_key: playerid:oe:player:cb4cd2fd258d5961d2f1c4815b04123
+- name: Golden Lions
+  teamid: oe:team:dbea9378f0ff4aec096cd27745d47da
+  league: CBLOL
+  starters:
+    top:
+      name: Brayaron
+      player_key: playerid:oe:player:cefb78f4cb1e9cca79eefc393d98e72
+    jng:
+      name: Ganks
+      player_key: playerid:oe:player:0cae306fd021751c70ab9f75123b561
+    mid:
+      name: Piqueos
+      player_key: playerid:oe:player:fbbdc14045f1d9b78dd8fd4ca50306d
+    bot:
+      name: Scenari0
+      player_key: playerid:oe:player:01ec6c66d030c0bfe5962c7cfe26655
+    sup:
+      name: Crecre
+      player_key: playerid:oe:player:84e640911c6d6f172d4cf1c7cc78a67
+- name: KaBuM! Ilha das Lendas
+  teamid: oe:team:a36eecb3eab2d2a79f411e462878d26
+  league: CBLOL
+  starters:
+    top:
+      name: Yupps
+      player_key: playerid:oe:player:ecdb594501a5800ad0f5c4e6b3b5a84
+    jng:
+      name: SCARY
+      player_key: playerid:oe:player:6cb75f242bca4309e2f942a4895805f
+    mid:
+      name: Grevthar
+      player_key: playerid:oe:player:dda07addeb137c860725f0c964dcbbf
+    bot:
+      name: Kojima
+      player_key: playerid:oe:player:966e8f61b0847f6059559ed09f8574f
+    sup:
+      name: Guigs
+      player_key: playerid:oe:player:c7c0cc0b057c316e22af5c5da55c0c8
+- name: Leviatan
+  teamid: oe:team:53ef3d5a3ac5d88bc000eff7d87aeb3
+  league: CBLOL
+  starters:
+    top:
+      name: Devost
+      player_key: playerid:oe:player:fd108dd07ee510bb9462127d183e1c5
+    jng:
+      name: Booki
+      player_key: playerid:oe:player:bc5b7cd82bc9e26b3bbdeddeb73c7d8
+    mid:
+      name: Enga
+      player_key: playerid:oe:player:39d68aa20f0b0b1ddddb871a7b26fbf
+    bot:
+      name: Strensh
+      player_key: playerid:oe:player:8b976d804f0b51e0dff5d24fc6ead77
+    sup:
+      name: Shiku
+      player_key: playerid:oe:player:5a63f3e7e2b4282f07785cdc895d624
+- name: LOUD
+  teamid: oe:team:658a021a796aa5501503220adb38cf4
+  league: CBLOL
+  starters:
+    top:
+      name: xyno
+      player_key: playerid:oe:player:fd0a05e90aefc83ac69d3352b0f0be6
+    jng:
+      name: Sinatra
+      player_key: playerid:oe:player:cce40f4b3dab509dbf23a9eaefed6ec
+    mid:
+      name: Kaze
+      player_key: playerid:oe:player:722c8846b5f0c756efb2affe467958a
+    bot:
+      name: Rabelo
+      player_key: playerid:oe:player:3ace2e5d36ad46eb2aec2ad1c43d3c5
+    sup:
+      name: uZent
+      player_key: playerid:oe:player:f89b14820da11d8679cfd07da552ca5
+- name: LØS
+  teamid: oe:team:ea65e6cc48a9be50fc5334369a5fca5
+  league: CBLOL
+  starters:
+    top:
+      name: Zest
+      player_key: playerid:oe:player:786b5bbf7bbfb7b79379e8589a865c1
+    jng:
+      name: Curse
+      player_key: playerid:oe:player:9c51ed760409db6fa2a02fe8046f110
+    mid:
+      name: Feisty
+      player_key: playerid:oe:player:d1ae0e2f9f3ac1e0e0cdcb86504ca77
+    bot:
+      name: Duduhh
+      player_key: playerid:oe:player:b4179fdeda1242fcd94b82a5710dd3e
+    sup:
+      name: Ackerman
+      player_key: playerid:oe:player:145201414ecb853de684fbe7d6bb5b6
+- name: paiN Gaming
+  teamid: oe:team:61450737f7b683db4da7b3e0bf0dced
+  league: CBLOL
+  starters:
+    top:
+      name: Boal
+      player_key: playerid:oe:player:6daafc30b010acda4ebc20b6785cbc0
+    jng:
+      name: CarioK
+      player_key: playerid:oe:player:5e07433d52dbc7bbc4faaf9492dbd2c
+    mid:
+      name: Namiru
+      player_key: playerid:oe:player:efd1b76f52f29c9252d5375eea2b594
+    bot:
+      name: Hena
+      player_key: playerid:oe:player:9712524dc88851032bd53054f8b49b4
+    sup:
+      name: Ceos
+      player_key: playerid:oe:player:c88cada1696defe81464925789aa6d8
+- name: RED Canids
+  teamid: oe:team:67169969ecc058b307edfa9c6b7a3c0
+  league: CBLOL
+  starters:
+    top:
+      name: zynts
+      player_key: playerid:oe:player:978c38ad839a85b4bdc8d3cd5e2c560
+    jng:
+      name: STEPZ
+      player_key: playerid:oe:player:6fcbbff49badbddafbda79a49abba07
+    mid:
+      name: Fuuu
+      player_key: playerid:oe:player:35859191db73609302debbc5c43117c
+    bot:
+      name: Morttheus
+      player_key: playerid:oe:player:1999dbe32608051613a2d3ed9c1b0d4
+    sup:
+      name: Manel
+      player_key: playerid:oe:player:323b1ce118ee27efaa0f0e2d163d31e
+- name: Vivo Keyd Stars
+  teamid: oe:team:b9e44c69c1a70fb35df9be96f9eafea
+  league: CBLOL
+  starters:
+    top:
+      name: zekas
+      player_key: playerid:oe:player:3d44f54d2b0fa13b698040cb51d09db
+    jng:
+      name: Disamis
+      player_key: playerid:oe:player:946b74bfc34e861b344ae03700af039
+    mid:
+      name: Mireu
+      player_key: playerid:oe:player:5b86bafc34d79c84a8847d29b64ca29
+    bot:
+      name: Jeskla
+      player_key: playerid:oe:player:71b8101d78beb04a089caa90a8d9310
+    sup:
+      name: scamber
+      player_key: playerid:oe:player:1d1600d15a68ab1a80348ee748ea1e3
+- name: BNK FEARX
+  teamid: oe:team:5c2e7e9ea8dfcba0150d9a5619baecf
+  league: LCK
+  starters:
+    top:
+      name: Clear
+      player_key: playerid:oe:player:d87853a5c1c5463889d70a62cdbcffc
+    jng:
+      name: Raptor
+      player_key: playerid:oe:player:637ed20b1e41be1c51bd1a4cb211357
+    mid:
+      name: VicLa
+      player_key: playerid:oe:player:d709285b163a94af9d819e568c592ba
+    bot:
+      name: Taeyoon
+      player_key: playerid:oe:player:4047b7fecd736a6924aa13b05f42897
+    sup:
+      name: Kellin
+      player_key: playerid:oe:player:b0ec3df39d61f953e7af0afd8eb8c4a
+- name: DN SOOPers
+  teamid: oe:team:b3c72a20aa56f5d28022ac04a7dc294
+  league: LCK
+  starters:
+    top:
+      name: DuDu
+      player_key: playerid:oe:player:6e6a78244523ed9e54731d07d1f79f4
+    jng:
+      name: Sharvel
+      player_key: playerid:oe:player:18a70ca6e551b080cf886828cc18394
+    mid:
+      name: Clozer
+      player_key: playerid:oe:player:6adb46561c24655e0455d9b3fdc5698
+    bot:
+      name: deokdam
+      player_key: playerid:oe:player:18bdb3898e7fecb3bb0be7ff075d509
+    sup:
+      name: Peter
+      player_key: playerid:oe:player:ee051912ad5f9a97aa9ce4980cbb481
+- name: Dplus Kia
+  teamid: oe:team:ef69efa6acebe94107f0cf1ba716806
+  league: LCK
+  starters:
+    top:
+      name: Siwoo
+      player_key: playerid:oe:player:da9f969a7ab3819b9e528072aa4d5e6
+    jng:
+      name: Lucid
+      player_key: playerid:oe:player:10b86429ce8048aba673d802632e358
+    mid:
+      name: ShowMaker
+      player_key: playerid:oe:player:5f8ff49cd56eae61d635966b183a451
+    bot:
+      name: Smash
+      player_key: playerid:oe:player:eaebb7118d7bd83eabac513053e1f6c
+    sup:
+      name: Career
+      player_key: playerid:oe:player:99e732def3601275db892c84fb85a0c
+- name: Gen.G
+  teamid: oe:team:50f58982d91a36557ec8aec52ab014f
+  league: LCK
+  starters:
+    top:
+      name: Kiin
+      player_key: playerid:oe:player:03daae1844b9ad257324c3eedf41e28
+    jng:
+      name: Canyon
+      player_key: playerid:oe:player:92544d7a994bd6841cccd9f6e42e3de
+    mid:
+      name: Chovy
+      player_key: playerid:oe:player:fb6e61b8acb05df17b7e5ad4ae7c800
+    bot:
+      name: Ruler
+      player_key: playerid:oe:player:eada4723af6f51cf2391d85b5fde49b
+    sup:
+      name: Duro
+      player_key: playerid:oe:player:605821ebcf6a2e53f03ec6e8e463d1b
+- name: HANJIN BRION
+  teamid: oe:team:b77b3f6068e20a2b3edc0ecd3dc70d4
+  league: LCK
+  starters:
+    top:
+      name: Casting
+      player_key: playerid:oe:player:86a59ad7ba2334ad7505f303d3f2ab6
+    jng:
+      name: GIDEON
+      player_key: playerid:oe:player:60b1614a632775c97a37a57bda799f2
+    mid:
+      name: Roamer
+      player_key: playerid:oe:player:ea58943d300b14d684bb05b3975fe15
+    bot:
+      name: Teddy
+      player_key: playerid:oe:player:2b5fa564a1259b97bc238fbfa719b07
+    sup:
+      name: Namgung
+      player_key: playerid:oe:player:97cae9bbdbfe09bafe83c5a7bda0727
+- name: Hanwha Life Esports
+  teamid: oe:team:3a1d18f46bcb3716ebcfcf4ef068934
+  league: LCK
+  starters:
+    top:
+      name: Zeus
+      player_key: playerid:oe:player:98dd15c330fb5abb4508347265a7f76
+    jng:
+      name: Kanavi
+      player_key: playerid:oe:player:41deab55354f57a94135989133f9968
+    mid:
+      name: Zeka
+      player_key: playerid:oe:player:f9cd2ef9afea5cda0eb3263a025cec1
+    bot:
+      name: Gumayusi
+      player_key: playerid:oe:player:c7319736816efe935787b4381c6f321
+    sup:
+      name: Delight
+      player_key: playerid:oe:player:051ca2e31ba25123961b3df95fdef4c
+- name: Kiwoom DRX
+  teamid: oe:team:1d0389df0c5eea93b04122ba167c010
+  league: LCK
+  starters:
+    top:
+      name: Frog
+      player_key: playerid:oe:player:c942f21cd85aaf8d7892aa712e3e2ce
+    jng:
+      name: Willer
+      player_key: playerid:oe:player:baf26814ef7b2f10fac33a00c3d53a3
+    mid:
+      name: Ucal
+      player_key: playerid:oe:player:bd6a2e6aaeb993fd29f43790265297f
+    bot:
+      name: Aiming
+      player_key: playerid:oe:player:85104684d1eb7f4c0ce393441a0b669
+    sup:
+      name: Andil
+      player_key: playerid:oe:player:5ef70ecd799a70ebbda239cd9a9f1e7
+- name: KT Rolster
+  teamid: oe:team:d723992568441c6bafa2658129eade7
+  league: LCK
+  starters:
+    top:
+      name: PerfecT
+      player_key: playerid:oe:player:29bef8f5895e5e4fef8ff0945e68567
+    jng:
+      name: Cuzz
+      player_key: playerid:oe:player:f9fe6d28d5b67bf9ac673b2cc8edf15
+    mid:
+      name: Bdd
+      player_key: playerid:oe:player:30361653a485a9609fb2d3aa073282c
+    bot:
+      name: Jiwoo
+      player_key: playerid:oe:player:8643b56ba8000250b81fdaca1d7f06e
+    sup:
+      name: Effort
+      player_key: playerid:oe:player:035b9ae578574cdf728d8760483d804
+- name: Nongshim RedForce
+  teamid: oe:team:5cd2cd09ec94296f605dd13a2924d6c
+  league: LCK
+  starters:
+    top:
+      name: Kingen
+      player_key: playerid:oe:player:618a87d272773f68239d8ce5555f39d
+    jng:
+      name: Sponge
+      player_key: playerid:oe:player:3f4027dc08a489bd4d5390913f5dc71
+    mid:
+      name: Scout
+      player_key: playerid:oe:player:71e79ef80600d398d90cfebe3b0b758
+    bot:
+      name: Diable
+      player_key: playerid:oe:player:178ec186b0d43d2669342596c2808cd
+    sup:
+      name: Lehends
+      player_key: playerid:oe:player:e4e24b8656e4e6a74b939af730b0148
+- name: T1
+  teamid: oe:team:ce499dea30cfce118f4fe85da0227e8
+  league: LCK
+  starters:
+    top:
+      name: Doran
+      player_key: playerid:oe:player:57acacc1f182893280e7400073a3dd1
+    jng:
+      name: Oner
+      player_key: playerid:oe:player:f8b68f268106124fc4bc1c946adc9b0
+    mid:
+      name: Faker
+      player_key: playerid:oe:player:e1edfc5cea461399a63cb813cf795cc
+    bot:
+      name: Peyz
+      player_key: playerid:oe:player:5bbc2b92348d930ebd500cb9ce71bb7
+    sup:
+      name: Keria
+      player_key: playerid:oe:player:db79ce6ad35451c938fbe2995dabd37
+- name: CTBC Flying Oyster
+  teamid: oe:team:0916b3c324c8577b0c6344f3e067f62
+  league: LCP
+  starters:
+    top:
+      name: Rest
+      player_key: playerid:oe:player:55276c10d84e1df7713b441e76e141f
+    jng:
+      name: Shad0w
+      player_key: playerid:oe:player:c332dc879e14f1feb266190c7f396fd
+    mid:
+      name: Pout
+      player_key: playerid:oe:player:ca187ee49dd3e9ed20eaacbbf484fdf
+    bot:
+      name: Doggo
+      player_key: playerid:oe:player:95082306f78780da5686f118c993366
+    sup:
+      name: Kino
+      player_key: playerid:oe:player:acb3a05894b7c57412b2d7e911e17dd
+- name: Deep Cross Gaming
+  teamid: oe:team:7e56e9367c023df96cc8257ff4e16c0
+  league: LCP
+  starters:
+    top:
+      name: Flauren
+      player_key: playerid:oe:player:8debac77f7c6101af768dc729323a67
+    jng:
+      name: Pop9
+      player_key: playerid:oe:player:32aa62568603d99d16591ee5dd52a8a
+    mid:
+      name: HongSuo
+      player_key: playerid:oe:player:32ddd24ac02f57871c631c66265d2f6
+    bot:
+      name: Feng
+      player_key: playerid:oe:player:e9a0da5ca2d009aeedf5afcfccffde5
+    sup:
+      name: ShiauC
+      player_key: playerid:oe:player:5d7f415cbf04b549c235a8a3d83a763
+- name: DetonatioN FocusMe
+  teamid: oe:team:e435aa3ecb82a89e60544f5f5857a81
+  league: LCP
+  starters:
+    top:
+      name: Momo
+      player_key: playerid:oe:player:555e3934816743f30cdda4c7cc0dfe3
+    jng:
+      name: Citrus
+      player_key: playerid:oe:player:ad173d59265cf2cbe796b2af2554da3
+    mid:
+      name: Fisher
+      player_key: playerid:oe:player:effd5b04b5d98b779f0a6162c40735a
+    bot:
+      name: Kakkun
+      player_key: playerid:oe:player:2caa05c21e7e142214c20319ff97d09
+    sup:
+      name: Woody
+      player_key: playerid:oe:player:31b5f1d49f55acb4ee7624813bda6b2
+- name: FENNEL
+  teamid: oe:team:d418f5db39c1766ac692224837b3c24
+  league: LCP
+  starters:
+    top:
+      name: kkkkkkkkk
+      player_key: playerid:oe:player:2558086bcc15a517030a39d7766957d
+    jng:
+      name: Ellim
+      player_key: playerid:oe:player:579ae2e0addc18db74179b2a3d33294
+    mid:
+      name: DICE
+      player_key: playerid:oe:player:285107bcc7ed3fdef0a479f78bc211c
+    bot:
+      name: MayR
+      player_key: playerid:oe:player:ccc992cc5b34f0cfe45db07ab8fa04c
+    sup:
+      name: Bruce
+      player_key: playerid:oe:player:841a33657841e55eb6b68b86de53af9
+- name: Frank Esports
+  teamid: oe:team:957a0b20bb6ce6491d39eb82e5fcb17
+  league: LCP
+  starters:
+    top:
+      name: YSKM
+      player_key: playerid:oe:player:7deb8d68aef0757c10381b599f855de
+    jng:
+      name: Holo
+      player_key: playerid:oe:player:3ee8d8613d285f720311d21a2c4a469
+    mid:
+      name: Pretender
+      player_key: playerid:oe:player:0d47af84bee7ca00a76beb860c3d6ff
+    bot:
+      name: MnM
+      player_key: playerid:oe:player:9a78213b3bc77c76369c2aca27257b9
+    sup:
+      name: kingpo54
+      player_key: playerid:oe:player:9e8bebd7faf4b97431dc39d3d697c88
+- name: Fukuoka SoftBank HAWKS gaming
+  teamid: oe:team:d8ca3fc1f0827ec76369af7b70d43e3
+  league: LCP
+  starters:
+    top:
+      name: Evi
+      player_key: playerid:oe:player:376d5e3b1257e6972228d458943f74c
+    jng:
+      name: Van1
+      player_key: playerid:oe:player:29de9c9016ef68693b02dea19357c78
+    mid:
+      name: Aria
+      player_key: playerid:oe:player:2e82913920d8a6d0efa480bc35f1ba8
+    bot:
+      name: Marble
+      player_key: playerid:oe:player:7fb26875c639817a59912a87be6f738
+    sup:
+      name: Vsta
+      player_key: playerid:oe:player:16c1637b4b44b008b4d6627f68ae30a
+- name: GAM Esports
+  teamid: oe:team:9cae7677cd0dbcc1cd86653870b73c2
+  league: LCP
+  starters:
+    top:
+      name: Kiaya
+      player_key: playerid:oe:player:73e08f7701a4316284cbe884b5d7e56
+    jng:
+      name: Draktharr
+      player_key: playerid:oe:player:df6940da41ba9a3df7055e75f3daac9
+    mid:
+      name: Gloryy
+      player_key: playerid:oe:player:97703d326201ee5bfa4694c7a73a2b4
+    bot:
+      name: Artemis
+      player_key: playerid:oe:player:9d2474b953a3a0be93880409ccceb4e
+    sup:
+      name: Taki
+      player_key: playerid:oe:player:1b90b5086aa57992143a92a2899b8e0
+- name: Ground Zero Gaming
+  teamid: oe:team:788115a84f68bc65fa6d3a4e0f67a3e
+  league: LCP
+  starters:
+    top:
+      name: 1Jiang
+      player_key: playerid:oe:player:2cec4b6803b4678250233ae79205f2e
+    jng:
+      name: Husha
+      player_key: playerid:oe:player:21e6493dca56a03bd0ccbdef211d187
+    mid:
+      name: Uniboy
+      player_key: playerid:oe:player:301affc76ea7f69929aff6bf84c642b
+    bot:
+      name: Betty
+      player_key: playerid:oe:player:7e754adda86a60e0a39d7204ba60424
+    sup:
+      name: Kaiwing
+      player_key: playerid:oe:player:0103d21d116b61eb55fa351242208cf
+- name: MVK Esports
+  teamid: oe:team:bc3824b0bbb8139d16109178faa4822
+  league: LCP
+  starters:
+    top:
+      name: Kratos
+      player_key: playerid:oe:player:75019a36fdf85666fbd9396ae4fc7ec
+    jng:
+      name: Gury
+      player_key: playerid:oe:player:0101bf828e44b2630d500590c4ad461
+    mid:
+      name: Chika
+      player_key: playerid:oe:player:c4d64ae9f01ee43ec2367d28eeadbea
+    bot:
+      name: Harky
+      player_key: playerid:oe:player:28a1925f6c4df972a5ae722c07bb4c4
+    sup:
+      name: SiuLoong
+      player_key: playerid:oe:player:397fee5de074b10600707b618fb1f29
+- name: Nothin'Here
+  teamid: oe:team:66b842b98ff8597a97351d8ed4848ab
+  league: LCP
+  starters:
+    top:
+      name: Excellentless
+      player_key: playerid:oe:player:fc734f4da63ef16daabc15a9957b98b
+    jng:
+      name: Feww
+      player_key: playerid:oe:player:d9070efc265ed9cf7ccc91180fe36eb
+    mid:
+      name: Itae
+      player_key: playerid:oe:player:19340997f90a933f7c421c64c0ec78f
+    bot:
+      name: Blondie
+      player_key: playerid:oe:player:4a880bd47efb66b8c6dfbdb2df286b8
+    sup:
+      name: YuyuuUsaki
+      player_key: playerid:oe:player:e67bc07a338cf507fe8d639af344a98
+- name: Saigon Warriors
+  teamid: oe:team:ae60cc9a2621d479d88fb39258c8e44
+  league: LCP
+  starters:
+    top:
+      name: Nern
+      player_key: playerid:oe:player:24c3a4f80a901b6aeb40a978d9a2cd8
+    jng:
+      name: j1n5
+      player_key: playerid:oe:player:9ce90580de8c5b8c2e3714fba7fa0c9
+    mid:
+      name: AisyL
+      player_key: playerid:oe:player:9699e95d3df6ce39149264082eed6bf
+    bot:
+      name: Aomine
+      player_key: playerid:oe:player:7676c3dbf9486cb34da6e1c94d09b70
+    sup:
+      name: Elio
+      player_key: playerid:oe:player:21d0c093d9553e0074a98c5b5880b4c
+- name: Team Gromp
+  teamid: oe:team:33fabdedbe5b473017986a31df1303d
+  league: LCP
+  starters:
+    top:
+      name: zorenous
+      player_key: playerid:oe:player:14ab5f52ef3268bfc818e12fda4e226
+    jng:
+      name: Poltron
+      player_key: playerid:oe:player:f14ab14b4bf705b9b408d84a36b4a43
+    mid:
+      name: Halo
+      player_key: playerid:oe:player:aa6df57fb6fe377d80b4a257b4a92cb
+    bot:
+      name: Praedyth
+      player_key: playerid:oe:player:9a754e5ccd044dd74ff3a9d184350ab
+    sup:
+      name: Bulldawg
+      player_key: playerid:oe:player:4d42944851ab83df6e313c8ec66d704
+- name: Team Secret Whales
+  teamid: oe:team:740de582f50775c516c77ed7b923fd5
+  league: LCP
+  starters:
+    top:
+      name: Pun
+      player_key: playerid:oe:player:6644a7352d32c9c4443017798130b61
+    jng:
+      name: Hizto
+      player_key: playerid:oe:player:043e89cd3b06bc1a0555024d475c9d2
+    mid:
+      name: Dire
+      player_key: playerid:oe:player:b7a3b6176406a92dd089fe2f82a1d3f
+    bot:
+      name: Eddie
+      player_key: playerid:oe:player:e5f6c83e6e97c74fc9e9760fc8972ae
+    sup:
+      name: Bie
+      player_key: playerid:oe:player:1f7d70f56b608b3137df2493949fdd0
+- name: Cloud9
+  teamid: oe:team:fc8e90107dabb9a35c490b0d86adea0
+  league: LCS
+  starters:
+    top:
+      name: Thanatos
+      player_key: playerid:oe:player:1efc4e5732e91520d03385900b903f9
+    jng:
+      name: Blaber
+      player_key: playerid:oe:player:ed455f823b6586e9e3621dfb5aeb42e
+    mid:
+      name: Loki
+      player_key: playerid:oe:player:0a53c1102dafce61e89decc517b3175
+    bot:
+      name: Tactical
+      player_key: playerid:oe:player:4e0619e57cb50c4ab1230c2dd72df1b
+    sup:
+      name: Vulcan
+      player_key: playerid:oe:player:81acc6bcde5c927c78e0990e9887f84
+- name: Cupid Esports
+  teamid: oe:team:d522e8753c50018adbb82305997c211
+  league: LCS
+  starters:
+    top:
+      name: Horder
+      player_key: playerid:oe:player:4e8d825698068a189023c34c67fe2cb
+    jng:
+      name: Music
+      player_key: playerid:oe:player:7bcd2e0ffb1e417c2aa64d08675ed2b
+    mid:
+      name: Ablazeolive
+      player_key: playerid:oe:player:e181a641eac63b45915802512997360
+    bot:
+      name: Mobility
+      player_key: playerid:oe:player:340a76e3aef8e862f5fd79411261b29
+    sup:
+      name: Breezy
+      player_key: playerid:oe:player:647116a60606bd44fb11a860da72776
+- name: Dignitas
+  teamid: oe:team:0dbb780176ecad18f17292d1f5653af
+  league: LCS
+  starters:
+    top:
+      name: Denathor
+      player_key: playerid:oe:player:3bb028a43aff78070d15c646450aa0d
+    jng:
+      name: Dardoch
+      player_key: playerid:oe:player:a2de87eae98d0ab3b85567026561a51
+    mid:
+      name: Palafox
+      player_key: playerid:oe:player:fddde6d256bee26713f64ad9b2a9394
+    bot:
+      name: FBI
+      player_key: playerid:oe:player:73d2b65353d7b00e0f198ffdc085edc
+    sup:
+      name: Ignar
+      player_key: playerid:oe:player:b6f837c8bd1b510dd3f77ee8c903c30
+- name: Disguised
+  teamid: oe:team:289284911fb6f41c0ccaecc3a0c2891
+  league: LCS
+  starters:
+    top:
+      name: Srtty
+      player_key: playerid:oe:player:4d0ec5fa505ee341aff8b2309356afc
+    jng:
+      name: KryRa
+      player_key: playerid:oe:player:85ab9a415e1cf1f63000f7f6f1c183a
+    mid:
+      name: Callme
+      player_key: playerid:oe:player:87f7503a6cdacffa612aeee7f04cc7c
+    bot:
+      name: sajed
+      player_key: playerid:oe:player:3b63ea0de80cfb191f952872b392da9
+    sup:
+      name: Lyonz
+      player_key: playerid:oe:player:a2d7b8856032bf106783621b9afeb41
+- name: FlyQuest
+  teamid: oe:team:2e66da41dc460dd378e3bcc57042d31
+  league: LCS
+  starters:
+    top:
+      name: Gakgos
+      player_key: playerid:oe:player:d617210b92fa03e78554883250d432c
+    jng:
+      name: Gryffinn
+      player_key: playerid:oe:player:2cbf592923f34b2e6acc4b747385c8a
+    mid:
+      name: Quad
+      player_key: playerid:oe:player:e9017664588010860a92ceb5f8fcb82
+    bot:
+      name: Massu
+      player_key: playerid:oe:player:c145139d26813639b8fe6f4d0b28228
+    sup:
+      name: Cryogen
+      player_key: playerid:oe:player:4f27911a3702f671c3d21286356a6df
+- name: Fuego
+  teamid: oe:team:0f0f407ca567fc73cc83d541ef45731
+  league: LCS
+  starters:
+    top:
+      name: Jauny
+      player_key: playerid:oe:player:d258f8c326e3532981a60d2393f129a
+    jng:
+      name: Grell
+      player_key: playerid:oe:player:5aa99e88083b40b8070e90f314e92ca
+    mid:
+      name: Skyy
+      player_key: playerid:oe:player:f7d8c1fd03b11c456966e4f1ee056f1
+    bot:
+      name: Snaker
+      player_key: playerid:oe:player:81d2110b25710f286ed9e9b6a8426b0
+    sup:
+      name: Ichiwin
+      player_key: playerid:oe:player:4d8833619c7d2128cd31d6098e7e4f3
+- name: LYON
+  teamid: oe:team:da1143bf9a245b78a8dc86417de85b3
+  league: LCS
+  starters:
+    top:
+      name: Dhokla
+      player_key: playerid:oe:player:5385f74da3e5deb5b66d9a1ee56cf97
+    jng:
+      name: Inspired
+      player_key: playerid:oe:player:a8307167f3a1c933295bb9e3d43700e
+    mid:
+      name: Saint
+      player_key: playerid:oe:player:f45792335d83b10581da2f0cbdd6e8e
+    bot:
+      name: Berserker
+      player_key: playerid:oe:player:460ae5a7af8d68f7831b70307210ab3
+    sup:
+      name: Isles
+      player_key: playerid:oe:player:40704dfd2d966862568d29770de57bd
+- name: Maryville University
+  teamid: oe:team:9336ce46babf314b50e3a103506ae0a
+  league: LCS
+  starters:
+    top:
+      name: Crimson
+      player_key: playerid:oe:player:5d66cbb86c841dd01cfbf146389f042
+    jng:
+      name: Yuuji
+      player_key: playerid:oe:player:f9e804c44aa43f18576783a067e99ab
+    mid:
+      name: AoJune
+      player_key: playerid:oe:player:60b3048edebc03e520e775db4cc706f
+    bot:
+      name: ScaryJerry
+      player_key: playerid:oe:player:265b58ce8b2f418df94006bf24e296c
+    sup:
+      name: Obstinatus
+      player_key: playerid:oe:player:5143731d10e0edf3a81ee7d55d8b961
+- name: Sentinels
+  teamid: oe:team:f90422f1cbcb24bc2a855202582ec29
+  league: LCS
+  starters:
+    top:
+      name: Impact
+      player_key: playerid:oe:player:21f59b54f62b5b8b4bc0f63f0f617fc
+    jng:
+      name: HamBak
+      player_key: playerid:oe:player:845ea84cec22236278388f19fcd20bf
+    mid:
+      name: DARKWINGS
+      player_key: playerid:oe:player:05a73863e113f3cb6b472a76da2ea52
+    bot:
+      name: Rahel
+      player_key: playerid:oe:player:e2c655411d8d95ef73d8026704f5e7a
+    sup:
+      name: huhi
+      player_key: playerid:oe:player:9191e392e93a6ef011ef76b5b83ee6c
+- name: Shopify Rebellion
+  teamid: oe:team:b360f1d729b0a8e0f29a5243c4200fa
+  league: LCS
+  starters:
+    top:
+      name: Fudge
+      player_key: playerid:oe:player:f02f1c8275084050765b4b6414bdfda
+    jng:
+      name: Contractz
+      player_key: playerid:oe:player:8a5dbe19794784cfd0553556844f045
+    mid:
+      name: Zinie
+      player_key: playerid:oe:player:3648451fd5b8a8ab01e4bedf780c1d6
+    bot:
+      name: Bvoy
+      player_key: playerid:oe:player:494fc60dffbb5da1caa2226baef0ec7
+    sup:
+      name: Zeyzal
+      player_key: playerid:oe:player:6841f2d68619d53bdd1cdbf30b5be2c
+- name: Team Liquid
+  teamid: oe:team:8eb884e168f28402ce685bedebb5250
+  league: LCS
+  starters:
+    top:
+      name: Morgan
+      player_key: playerid:oe:player:f73dde2d8c7879ae8d1fcdc03c4ffeb
+    jng:
+      name: Josedeodo
+      player_key: playerid:oe:player:52b4f060a577ff87c99118d97fa75f4
+    mid:
+      name: Quid
+      player_key: playerid:oe:player:8f8eaac8e99c203ee76e57c5c81c91f
+    bot:
+      name: Yeon
+      player_key: playerid:oe:player:f6b8af05a5af22004a67a78f3046b92
+    sup:
+      name: CoreJJ
+      player_key: playerid:oe:player:05fafeaf23dc3285558a4e968970b9f
+- name: Zeu5 Esports
+  teamid: oe:team:10b956b9c5ac7a1d0bf3ded8a12a78a
+  league: LCS
+  starters:
+    top:
+      name: Keii
+      player_key: playerid:oe:player:c70b6e57e597809a8561caa79c5db8f
+    jng:
+      name: Blind Walker
+      player_key: playerid:oe:player:906c6cdbfce615131dafcbeb1bbe7e8
+    mid:
+      name: Zelt
+      player_key: playerid:oe:player:288d8e1e6e78a857421f10ee40d3fba
+    bot:
+      name: Raysito
+      player_key: playerid:oe:player:5cd6a9269ede81b85d57e2beaaae6b0
+    sup:
+      name: Kita
+      player_key: playerid:oe:player:aaa8bc3b73bb36e8638857dd41dbeaf
+- name: Fnatic
+  teamid: oe:team:78f183fa5a7d8ecb22b9ad272c3abd7
+  league: LEC
+  starters:
+    top:
+      name: Soboro
+      player_key: playerid:oe:player:38e0af7278d6769d0c81d7c4b47ac1e
+    jng:
+      name: Razork
+      player_key: playerid:oe:player:390ca7b6b38d552363eba1b5b54ff18
+    mid:
+      name: Vladi
+      player_key: playerid:oe:player:367fecc4cb53a8234abbd9f283b7997
+    bot:
+      name: Upset
+      player_key: playerid:oe:player:fe4329cec43193c425eb28a4a4b304a
+    sup:
+      name: Lospa
+      player_key: playerid:oe:player:0758af26fa0c3af6899bb1569059609
+- name: G2 Esports
+  teamid: oe:team:7d6673d3a9d00363c6bebc1a630da6e
+  league: LEC
+  starters:
+    top:
+      name: BrokenBlade
+      player_key: playerid:oe:player:84bff3a326833c7c9181c698f676878
+    jng:
+      name: SkewMond
+      player_key: playerid:oe:player:ab15060e5225b51592cd04b3aed1e09
+    mid:
+      name: Caps
+      player_key: playerid:oe:player:55dd587cdc4a278be6a5c37f9e539de
+    bot:
+      name: Hans Sama
+      player_key: playerid:oe:player:c62a5235ad6bc113a1e64eb0e9aa8c8
+    sup:
+      name: Labrov
+      player_key: playerid:oe:player:bb6ac5763c6576e104a7a2f59eb4ddf
+- name: GiantX
+  teamid: oe:team:6cd05f0ac20bfb965a59dc8bcc4f184
+  league: LEC
+  starters:
+    top:
+      name: Oscarinin
+      player_key: playerid:oe:player:be9758f87345bcce47970a8f17b3c07
+    jng:
+      name: ISMA
+      player_key: playerid:oe:player:5450c7731de19c131ce20ea74933cc2
+    mid:
+      name: Jackies
+      player_key: playerid:oe:player:204746c853a12888ad72d8035cdf8c7
+    bot:
+      name: Flakked
+      player_key: playerid:oe:player:717bb4d71a2dab54e7020b1a8fde420
+    sup:
+      name: Jun
+      player_key: playerid:oe:player:054e5f8aeb885db6713f4a3e7328efc
+- name: Karmine Corp
+  teamid: oe:team:f3aa9bbd924ce3af42ac53f8326bc7c
+  league: LEC
+  starters:
+    top:
+      name: Canna
+      player_key: playerid:oe:player:7577c239c73fa5f3011cd7b5503e75e
+    jng:
+      name: Yike
+      player_key: playerid:oe:player:4203fc46c4c6333e9bfa9d0a8618677
+    mid:
+      name: kyeahoo
+      player_key: playerid:oe:player:308e48bf56284c09a1a9aadf55bc80c
+    bot:
+      name: Caliste
+      player_key: playerid:oe:player:e2af2b779499aa25ab9a9c10c9a5ffd
+    sup:
+      name: Busio
+      player_key: playerid:oe:player:3e722c8ede909c83af9342c41805a16
+- name: Karmine Corp Blue
+  teamid: oe:team:42bf6c1040db8f2221ff017fa4d34e4
+  league: LEC
+  starters:
+    top:
+      name: Tao
+      player_key: playerid:oe:player:199bbcd68b0c89c2fc2c7892385cb2b
+    jng:
+      name: Yukino
+      player_key: playerid:oe:player:8bad2b6e61622bd2fa9462db0a2b877
+    mid:
+      name: Kamiloo
+      player_key: playerid:oe:player:728ce343a6718cfdd5d223c971cc2fd
+    bot:
+      name: Hazel
+      player_key: playerid:oe:player:bcd61ebb24698511281a624595bb2f7
+    sup:
+      name: Prime
+      player_key: playerid:oe:player:e038414b765a8bda52e602f7eaeff04
+- name: Los Ratones
+  teamid: oe:team:2d096df29ab7e32950c86e0d72fc986
+  league: LEC
+  starters:
+    top:
+      name: Baus
+      player_key: playerid:oe:player:7f77fb35ead1b44ec7cb3ebb5a395ac
+    jng:
+      name: Velja
+      player_key: playerid:oe:player:a68581f40d30119bad63673b157e660
+    mid:
+      name: Nemesis
+      player_key: playerid:oe:player:456d479c879155333c0624219803ec4
+    bot:
+      name: Crownie
+      player_key: playerid:oe:player:1c51707d8fd9873c9fd184e2cd01b33
+    sup:
+      name: Rekkles
+      player_key: playerid:oe:player:d8362fe0d38ca0e70953ed957deaa00
+- name: Movistar KOI
+  teamid: oe:team:4acc40654379b4da680be1bd3129dfa
+  league: LEC
+  starters:
+    top:
+      name: Myrwn
+      player_key: playerid:oe:player:ede24d5e0911d7a4f6ec514a67802ff
+    jng:
+      name: Elyoya
+      player_key: playerid:oe:player:8a8f18e4b7d0f30c19c5fb99a526951
+    mid:
+      name: Jojopyun
+      player_key: playerid:oe:player:83eb62484689106807fcf5ad55b5479
+    bot:
+      name: Supa
+      player_key: playerid:oe:player:1223a0ed2bfab9b714c72d965df8133
+    sup:
+      name: Alvaro
+      player_key: playerid:oe:player:f5bf9bd732b85e4dcab5121e4769ae4
+- name: Natus Vincere
+  teamid: oe:team:d2ba9f92d85cff67d60aaad88e61048
+  league: LEC
+  starters:
+    top:
+      name: Maynter
+      player_key: playerid:oe:player:63dd174baf11b12006e5dc29c2269a1
+    jng:
+      name: Rhilech
+      player_key: playerid:oe:player:cbe20c64274a87a21e5bdac1ccc3e77
+    mid:
+      name: Poby
+      player_key: playerid:oe:player:4e0ee55680fa265c49e158f85e26650
+    bot:
+      name: SamD
+      player_key: playerid:oe:player:bc4f68ea698f26bb1e2f6d34f900f57
+    sup:
+      name: Parus
+      player_key: playerid:oe:player:a9cfbc13e22eefdd22af7b346ce2af4
+- name: Shifters
+  teamid: oe:team:a2065488a11a2c0a2403a7b347eec61
+  league: LEC
+  starters:
+    top:
+      name: Rooster
+      player_key: playerid:oe:player:285954244fdc2bcce532fb88a1e0ddb
+    jng:
+      name: Sheo
+      player_key: playerid:oe:player:404079b4e478ea2a8b57904c640311b
+    mid:
+      name: nuc
+      player_key: playerid:oe:player:8f862245fbdb4d065e46c83630b9495
+    bot:
+      name: Paduck
+      player_key: playerid:oe:player:326f63d01099f1c8b91620cbc893813
+    sup:
+      name: Stend
+      player_key: playerid:oe:player:41672e17bc1f86dc5d93955c031d2a9
+- name: SK Gaming
+  teamid: oe:team:75760dca486d4682426196b76bd1a54
+  league: LEC
+  starters:
+    top:
+      name: Wunder
+      player_key: playerid:oe:player:d11068c782573b34be81beb5a4eeb12
+    jng:
+      name: Skeanz
+      player_key: playerid:oe:player:682275c2ba204d32b67f5fa94b928e4
+    mid:
+      name: SlowQ
+      player_key: playerid:oe:player:613a571a4b0b674547093130f2e4093
+    bot:
+      name: Jopa
+      player_key: playerid:oe:player:e214e8e906f16ec13e9a88de30dc181
+    sup:
+      name: Mikyx
+      player_key: playerid:oe:player:9d5052e9f9f4a63835f738441a3b1f6
+- name: Team Heretics
+  teamid: oe:team:1285e1c04d54de96502f12da4d49458
+  league: LEC
+  starters:
+    top:
+      name: Tracyn
+      player_key: playerid:oe:player:1725cf69407d2dcdf2873d0669409e8
+    jng:
+      name: Daglas
+      player_key: playerid:oe:player:b49867477e266c5da8e995074e18f80
+    mid:
+      name: Serin
+      player_key: playerid:oe:player:e3b8d5a9290fe0c7458dc01db4dc9dc
+    bot:
+      name: Hype
+      player_key: playerid:oe:player:2452114de900ce4bb971851b668786d
+    sup:
+      name: Way
+      player_key: playerid:oe:player:8c6395564a23f3c2af8d378540012b0
+- name: Team Vitality
+  teamid: oe:team:e8d8ae992fe72acb7adc7bfcee31dbb
+  league: LEC
+  starters:
+    top:
+      name: Naak Nako
+      player_key: playerid:oe:player:370f639a8b838f1933c7232d8adae72
+    jng:
+      name: Lyncas
+      player_key: playerid:oe:player:ca9701f085966dfca32e31b1b1e9d55
+    mid:
+      name: FIESTA
+      player_key: playerid:oe:player:5ee64eb3feb02e60832a2265db54f71
+    bot:
+      name: Carzzy
+      player_key: playerid:oe:player:ec0c2b8d7630efba391c288765d4d7e
+    sup:
+      name: Fleshy
+      player_key: playerid:oe:player:10be1f35d8b5ea6babf916a6e7dd8a4
+- name: Anyone's Legend
+  teamid: oe:team:ed28f87f0cfdba0a2a8f183cebae73a
+  league: LPL
+  starters:
+    top:
+      name: Breathe
+      player_key: playerid:oe:player:0d9b0a3b3a93a8f759c9d8ac8eef97c
+    jng:
+      name: Tarzan
+      player_key: playerid:oe:player:62922f2b370657a966de4d84f5586bf
+    mid:
+      name: Shanks
+      player_key: playerid:oe:player:0e2f0d3ded24c190dd6a4b3d6f89f04
+    bot:
+      name: Hope
+      player_key: playerid:oe:player:7cf68f44e5dc31827b1d3f0a3b4a28e
+    sup:
+      name: Kael
+      player_key: playerid:oe:player:d24f38ec30ce6f7577066f80e43e4bf
+- name: Bilibili Gaming
+  teamid: oe:team:d356a144644879dabb5f34cd99c886d
+  league: LPL
+  starters:
+    top:
+      name: Bin
+      player_key: playerid:oe:player:fb66ef5885b4be9323905b821dc3a42
+    jng:
+      name: Xun
+      player_key: playerid:oe:player:fbdc4428b2d095c83aebeed5da4e4b2
+    mid:
+      name: Knight
+      player_key: playerid:oe:player:ed29043422e3c515e1cb292464b990b
+    bot:
+      name: Viper
+      player_key: playerid:oe:player:9573154ad8bc9459b4c0d940315054f
+    sup:
+      name: 'ON'
+      player_key: playerid:oe:player:90651ebea9a35ec4e018c8157492e17
+- name: EDward Gaming
+  teamid: oe:team:056c3140a119e44a03d462e2c832f27
+  league: LPL
+  starters:
+    top:
+      name: Zdz
+      player_key: playerid:oe:player:132ee4b29ebeac294a420dcebe64bdc
+    jng:
+      name: Jiejie
+      player_key: playerid:oe:player:88bba3108e62145a9780becd3eb553d
+    mid:
+      name: BuLLDoG
+      player_key: playerid:oe:player:317aeb74a6dd16bea711bbad361ca44
+    bot:
+      name: Leave
+      player_key: playerid:oe:player:a52945dbe283de2f7e9d63ca3417f36
+    sup:
+      name: Parukia
+      player_key: playerid:oe:player:13166913111075999f2adeb687548eb
+- name: Invictus Gaming
+  teamid: oe:team:53a258f289c26d94431c0496a54e151
+  league: LPL
+  starters:
+    top:
+      name: TheShy
+      player_key: playerid:oe:player:37f20525a39d17ec49fd10294f9c994
+    jng:
+      name: Wei
+      player_key: playerid:oe:player:b61e517b1a6027160aafaf56e9867c0
+    mid:
+      name: Rookie
+      player_key: playerid:oe:player:1213778b5c6d69dcb26aa89f7d0aaa9
+    bot:
+      name: JiaQi
+      player_key: playerid:oe:player:d971df9441d60af93a87545e6a8f884
+    sup:
+      name: Meiko
+      player_key: playerid:oe:player:bda7cc061d7a1576f1dcad33dd505cd
+- name: JD Gaming
+  teamid: oe:team:b42d0f31f2727621b963042276817c4
+  league: LPL
+  starters:
+    top:
+      name: Xiaoxu
+      player_key: playerid:oe:player:8007ba25dee37ac1e4445a6e9f8d252
+    jng:
+      name: JunJia
+      player_key: playerid:oe:player:a22a6d1fe8786cf83675e2d932fbffe
+    mid:
+      name: HongQ
+      player_key: playerid:oe:player:a179853ac2a0832657b9de8b9ba0020
+    bot:
+      name: GALA
+      player_key: playerid:oe:player:867e8957fae1cb59f0808dbcc3aada2
+    sup:
+      name: Vampire
+      player_key: playerid:oe:player:41ad87cfc159526f62529db61162a2a
+- name: LGD Gaming
+  teamid: oe:team:5f401785b6b78326f9a46b3c6b206ed
+  league: LPL
+  starters:
+    top:
+      name: Burdol
+      player_key: playerid:oe:player:566586ef99b39b57e9c85c59f021da5
+    jng:
+      name: Heng
+      player_key: playerid:oe:player:92f0831b560a15d8be3be25275adb08
+    mid:
+      name: Tangyuan
+      player_key: playerid:oe:player:3c93fcbfb525315f6412904e5b9abbd
+    bot:
+      name: Shaoye
+      player_key: playerid:oe:player:6d734e1e86b978852d95cfd63d6a643
+    sup:
+      name: Crisp
+      player_key: playerid:oe:player:6059545b206c4b230b97fd3651b473a
+- name: LNG Esports
+  teamid: oe:team:a9145b7711873f53e610fbba0493484
+  league: LPL
+  starters:
+    top:
+      name: sheer
+      player_key: playerid:oe:player:3ce68cf813bc34243279fd7fe3cecbb
+    jng:
+      name: Weiwei
+      player_key: playerid:oe:player:57da8dfcfbdb4e5b019fe93003db1c4
+    mid:
+      name: Nia
+      player_key: playerid:oe:player:7c30c1a6ce9d063b361b66ccb40444b
+    bot:
+      name: 1xn
+      player_key: playerid:oe:player:d2b317a92a71a850ae3da1e0d83e883
+    sup:
+      name: Ycx
+      player_key: playerid:oe:player:397bcf46311de3cf780469b2a842b67
+- name: Ninjas in Pyjamas
+  teamid: oe:team:48d7941ccbd5b89aca46c57b0c2f8fb
+  league: LPL
+  starters:
+    top:
+      name: HOYA
+      player_key: playerid:oe:player:57ac9f77eae511aeee1e854434f73f2
+    jng:
+      name: Guwon
+      player_key: playerid:oe:player:6427b0c5a7c3106e92a7c11257a08c6
+    mid:
+      name: Care
+      player_key: playerid:oe:player:6bc43cc1537fa4ac6295b4899e972cf
+    bot:
+      name: Photic
+      player_key: playerid:oe:player:1c42d9266c8b391c7870b7a39f25a12
+    sup:
+      name: fengyue
+      player_key: playerid:oe:player:b777313deced54da2d2c1aa88f52e50
+- name: Oh My God
+  teamid: oe:team:f4c4528c6981e104a11ea7548630c23
+  league: LPL
+  starters:
+    top:
+      name: Hery
+      player_key: playerid:oe:player:407b2b8fcb2fd977fc766d5df3f4dff
+    jng:
+      name: re0
+      player_key: playerid:oe:player:3389bea88a7a78d4b5577a86e07c2ee
+    mid:
+      name: haichao
+      player_key: playerid:oe:player:f886838ee1808c2f217208267a829ce
+    bot:
+      name: Photic
+      player_key: playerid:oe:player:1c42d9266c8b391c7870b7a39f25a12
+    sup:
+      name: Moham
+      player_key: playerid:oe:player:dfc279de8d7bd571aa8edfd7eb89c03
+- name: Team WE
+  teamid: oe:team:62c1cd9465dc63824593ee5046f5aa8
+  league: LPL
+  starters:
+    top:
+      name: Cube
+      player_key: playerid:oe:player:b6603b64c5cabad210826735469838b
+    jng:
+      name: Monki
+      player_key: playerid:oe:player:a23b45071ea855f85e43db4b5a1683d
+    mid:
+      name: Karis
+      player_key: playerid:oe:player:498246d6c44175256a07ed5f322c817
+    bot:
+      name: About
+      player_key: playerid:oe:player:8f7f4c1ce7a4f933663d10543562b09
+    sup:
+      name: Erha
+      player_key: playerid:oe:player:a7128975a782c11d8c34525be8e1b6c
+- name: ThunderTalk Gaming
+  teamid: oe:team:df80f468a3f9a722df056fe9104f052
+  league: LPL
+  starters:
+    top:
+      name: Keshi
+      player_key: playerid:oe:player:9d8737d57b1048a8b571856a296b624
+    jng:
+      name: Junhao
+      player_key: playerid:oe:player:211333df928f872c063bce4ef25ea63
+    mid:
+      name: Heru
+      player_key: playerid:oe:player:9fbfcaef69533c0545859880e974572
+    bot:
+      name: Ahn
+      player_key: playerid:oe:player:66d0ff0f8f9b5296770c1dbda549950
+    sup:
+      name: Feather
+      player_key: playerid:oe:player:5000a68e43f946c726a17e1008e230a
+- name: Top Esports
+  teamid: oe:team:fcec508e780bbd1ad493852640f5b36
+  league: LPL
+  starters:
+    top:
+      name: ZUIAN
+      player_key: playerid:oe:player:f52533de1cc92487ab58b973cd2490e
+    jng:
+      name: Tian
+      player_key: playerid:oe:player:0da0eeb199e8fa3ab773cf84f9de9ab
+    mid:
+      name: Creme
+      player_key: playerid:oe:player:6e7908512cb309a43388bb464a312a2
+    bot:
+      name: JackeyLove
+      player_key: playerid:oe:player:c54e1090ef1faa736b12493051c4855
+    sup:
+      name: Zhuo
+      player_key: playerid:oe:player:e78da55d6db43d982f841204a8e51ac
+- name: Ultra Prime
+  teamid: oe:team:8d09428f093dfbf3c488bce350af0b1
+  league: LPL
+  starters:
+    top:
+      name: sasi
+      player_key: playerid:oe:player:e85e46c5f3d3fcce55af9ca6a4cb45c
+    jng:
+      name: climber
+      player_key: playerid:oe:player:30b18cd72f0d41ae18f14378d2dab48
+    mid:
+      name: Saber
+      player_key: playerid:oe:player:da42b9f18367dc6c30476ec117c29de
+    bot:
+      name: Hena
+      player_key: playerid:oe:player:9712524dc88851032bd53054f8b49b4
+    sup:
+      name: Xiaoxia
+      player_key: playerid:oe:player:403937c97942cb4634ef8907077ede5
+- name: Weibo Gaming
+  teamid: oe:team:606c6ac695907af3823ee6405c58ff1
+  league: LPL
+  starters:
+    top:
+      name: Zika
+      player_key: playerid:oe:player:65ed20b21e2993fb00dbd21a2fd991b
+    jng:
+      name: Xiaohao
+      player_key: playerid:oe:player:58771d428ade54dd5983bbe70ce0383
+    mid:
+      name: Xiaohu
+      player_key: playerid:oe:player:beea9fe15bff6a7ab0b3913d3d5fde6
+    bot:
+      name: Elk
+      player_key: playerid:oe:player:a58a0d41103cdc5b58cbb547eeaca2d
+    sup:
+      name: Moham
+      player_key: playerid:oe:player:dfc279de8d7bd571aa8edfd7eb89c03

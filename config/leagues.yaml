@@ -49,3 +49,41 @@ regions:
     - LMS
     - PCS
     - LCP
+
+# Editable regular-season simulation formats. round_robin is single, double,
+# or triple; best_of is the per-match series length.
+regular_season:
+  default:
+    round_robin: double
+    best_of: 1
+  leagues:
+    LCK:
+      round_robin: double
+      best_of: 3
+    LPL:
+      round_robin: double
+      best_of: 3
+    LEC:
+      round_robin: double
+      best_of: 1
+    EU LCS:
+      round_robin: double
+      best_of: 1
+    LCS:
+      round_robin: double
+      best_of: 1
+    NA LCS:
+      round_robin: double
+      best_of: 1
+    CBLOL:
+      round_robin: double
+      best_of: 1
+    LTA N:
+      round_robin: double
+      best_of: 1
+    LTA S:
+      round_robin: double
+      best_of: 1
+    LCP:
+      round_robin: double
+      best_of: 1

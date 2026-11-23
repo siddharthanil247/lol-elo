@@ -9,6 +9,7 @@ from lol_elo.ingest import main as run_ingest
 from lol_elo.lookup import main as run_lookup
 from lol_elo.player_elo import main as run_player
 from lol_elo.priors import main as run_priors
+from lol_elo.project import main_backtest, main_project, main_template
 
 
 def main() -> None:
@@ -36,11 +37,33 @@ def main() -> None:
         sys.argv = [sys.argv[0], *sys.argv[2:]]
         run_priors()
         return
+    if len(sys.argv) > 1 and sys.argv[1] == "project":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        main_project()
+        return
+    if len(sys.argv) > 1 and sys.argv[1] == "backtest":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        main_backtest()
+        return
+    if len(sys.argv) > 1 and sys.argv[1] == "roster-template":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        main_template()
+        return
 
     parser = argparse.ArgumentParser(prog="python -m lol_elo")
     parser.add_argument(
         "command",
-        choices=["ingest", "baseline", "player", "lookup", "ablate", "priors"],
+        choices=[
+            "ingest",
+            "baseline",
+            "player",
+            "lookup",
+            "ablate",
+            "priors",
+            "project",
+            "backtest",
+            "roster-template",
+        ],
     )
     parser.parse_args()
 
