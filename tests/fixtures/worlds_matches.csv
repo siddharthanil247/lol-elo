@@ -1,0 +1,25 @@
+gameid,league,year,split,playoffs,date,game,patch,side,position,playername,playerid,teamname,teamid,result,gamelength
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Blue,team,,,Blue A,blue-a,1,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Red,team,,,New Team,new-team,0,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Blue,top,Worlds B1,w-b1,Blue A,blue-a,1,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Blue,jng,Worlds B2,w-b2,Blue A,blue-a,1,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Blue,mid,Worlds B3,w-b3,Blue A,blue-a,1,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Blue,bot,Worlds B4,w-b4,Blue A,blue-a,1,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Blue,sup,Worlds B5,w-b5,Blue A,blue-a,1,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Red,top,Worlds R1,w-r1,New Team,new-team,0,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Red,jng,Worlds R2,w-r2,New Team,new-team,0,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Red,mid,Worlds R3,w-r3,New Team,new-team,0,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Red,bot,Worlds R4,w-r4,New Team,new-team,0,1800
+wld-out,WLDs,2024,Worlds,1,2024-10-01 12:00:00,1,14.19,Red,sup,Worlds R5,w-r5,New Team,new-team,0,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Blue,team,,,Blue A,blue-a,1,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Red,team,,,Red A,red-a,0,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Blue,top,Worlds B1,w2-b1,Blue A,blue-a,1,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Blue,jng,Worlds B2,w2-b2,Blue A,blue-a,1,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Blue,mid,Worlds B3,w2-b3,Blue A,blue-a,1,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Blue,bot,Worlds B4,w2-b4,Blue A,blue-a,1,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Blue,sup,Worlds B5,w2-b5,Blue A,blue-a,1,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Red,top,Worlds R1,w2-r1,Red A,red-a,0,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Red,jng,Worlds R2,w2-r2,Red A,red-a,0,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Red,mid,Worlds R3,w2-r3,Red A,red-a,0,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Red,bot,Worlds R4,w2-r4,Red A,red-a,0,1800
+wld-in,WLDs,2024,Worlds,1,2024-10-02 12:00:00,1,14.19,Red,sup,Worlds R5,w2-r5,Red A,red-a,0,1800

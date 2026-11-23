@@ -3,9 +3,11 @@ tier1_domestic:
   - LCK
   - OGN
   - LPL
-  - LEC
+  - name: LEC
+    start_year: 2019
   - EU LCS
-  - LCS
+  - name: LCS
+    start_year: 2019
   - NA LCS
   - LTA N
   - LTA S
@@ -24,3 +26,5 @@ international:
   - FST
   - EWC
   - MSC
+
+international_require_tier1_teams: true
