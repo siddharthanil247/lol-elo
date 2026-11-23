@@ -1,7 +1,11 @@
 import pandas as pd
 
 from lol_elo.player_elo import ROLES
-from lol_elo.project import before_season, project_team_ratings
+from lol_elo.project import (
+    _roster_change_count,
+    before_season,
+    project_team_ratings,
+)
 
 
 def _roster() -> dict:
@@ -117,3 +121,16 @@ def test_preseason_snapshot_excludes_games_on_or_after_first_game() -> None:
     assert start == pd.Timestamp("2020-01-10")
     assert prior_games.gameid.tolist() == ["old"]
     assert prior_players.gameid.tolist() == ["old"]
+
+
+def test_role_swap_among_same_five_players_counts_as_zero_changes() -> None:
+    previous = {role: f"player-{role}" for role in ROLES}
+    current = {
+        "top": previous["bot"],
+        "jng": previous["jng"],
+        "mid": previous["mid"],
+        "bot": previous["top"],
+        "sup": previous["sup"],
+    }
+
+    assert _roster_change_count(previous, current) == 0

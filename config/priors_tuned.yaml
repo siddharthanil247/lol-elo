@@ -1,0 +1,56 @@
+tier1_rookie_base: 1500.0124939168008
+global_shrink: 0.10319080647980024
+league_shrink:
+  CK: 0.2645958635263421
+  DCup: 0.458788589924221
+  EU CS: 0.34594785944883183
+  KeSPA Cup: -0.1992350225037207
+  LCSA: 0.14295671301544488
+  LDL: -0.13476662009862375
+  LSPL: 0.3115645266818695
+  NA CS: 0.17029866204723162
+fit_cutoff_year: 2024
+fit_debuts: 1189
+league_debuts:
+  ? ''
+  : 562
+  ASCI: 7
+  BRCC: 23
+  CBLOLA: 18
+  CDF: 4
+  CK: 43
+  DCup: 63
+  EU CS: 64
+  EUM: 25
+  GPL: 6
+  IC: 1
+  IEM: 20
+  KeSPA: 2
+  KeSPA Cup: 41
+  LAS: 1
+  LCKC: 27
+  LCL: 1
+  LCSA: 36
+  LDL: 91
+  LFL: 13
+  LJL: 4
+  LJLCS: 1
+  LLA: 3
+  LLN: 1
+  LPLOL: 1
+  LSPL: 41
+  LVP SL: 2
+  NA CS: 52
+  NACL: 3
+  NEST: 1
+  NLC: 2
+  OPL: 4
+  PGN: 1
+  PRM: 5
+  SLO: 2
+  TCL: 11
+  TCS: 1
+  TPL: 1
+  UKLC: 1
+  UL: 2
+  UPL: 2

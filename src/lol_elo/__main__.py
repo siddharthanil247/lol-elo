@@ -10,6 +10,8 @@ from lol_elo.lookup import main as run_lookup
 from lol_elo.player_elo import main as run_player
 from lol_elo.priors import main as run_priors
 from lol_elo.project import main_backtest, main_project, main_template
+from lol_elo.report import main as run_report
+from lol_elo.tune import main as run_tune
 
 
 def main() -> None:
@@ -49,6 +51,14 @@ def main() -> None:
         sys.argv = [sys.argv[0], *sys.argv[2:]]
         main_template()
         return
+    if len(sys.argv) > 1 and sys.argv[1] == "tune":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        run_tune()
+        return
+    if len(sys.argv) > 1 and sys.argv[1] == "report":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        run_report()
+        return
 
     parser = argparse.ArgumentParser(prog="python -m lol_elo")
     parser.add_argument(
@@ -63,6 +73,8 @@ def main() -> None:
             "project",
             "backtest",
             "roster-template",
+            "tune",
+            "report",
         ],
     )
     parser.parse_args()

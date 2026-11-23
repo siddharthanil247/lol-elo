@@ -19,6 +19,9 @@ offseason_regression_enabled: false
 regress_frac: 0.2
 new_season_m: 10
 new_season_k_mult: 1.5
+tuning_objective_weights:
+  game_log_loss: 0.7
+  backtest_mae: 0.3
 
 # Series formats can be edited as league seasons change. Observed game numbers
 # extend a configured format when a series contains more games than expected.

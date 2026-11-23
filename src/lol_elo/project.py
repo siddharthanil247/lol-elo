@@ -618,6 +618,135 @@ def _starter_identity(starter: object) -> str:
     return str(starter)
 
 
+def _roster_change_count(previous: dict | None, current: dict) -> int:
+    """Count replaced players, independent of role assignments."""
+    if previous is None:
+        return 5
+    old_players = {_starter_identity(value) for value in previous.values()}
+    new_players = {_starter_identity(value) for value in current.values()}
+    return 5 - len(old_players & new_players)
+
+
+def _format_lineup(lineup: dict | None) -> str:
+    if not lineup:
+        return "<no prior lineup>"
+    formatted = []
+    for role, value in lineup.items():
+        name = (
+            value.get("name", value.get("player_key", "?"))
+            if isinstance(value, dict)
+            else value
+        )
+        formatted.append(f"{role}={name}")
+    return ", ".join(formatted)
+
+
+def _first_three_substitutions(
+    games: pd.DataFrame,
+    players: pd.DataFrame,
+    season: int,
+    team: dict,
+) -> str:
+    selected_games = games.loc[
+        pd.to_numeric(games["year"], errors="coerce").eq(season)
+        & games["league"].eq(team["league"])
+        & ~_playoffs_mask(games["playoffs"])
+    ].copy()
+    selected_games["date"] = pd.to_datetime(selected_games["date"], errors="coerce")
+    if team.get("teamid"):
+        matches = selected_games["blue_team_id"].astype("string").eq(
+            str(team["teamid"])
+        ) | selected_games["red_team_id"].astype("string").eq(str(team["teamid"]))
+    else:
+        matches = selected_games["blue_team"].map(_norm).eq(
+            _norm(team["name"])
+        ) | selected_games["red_team"].map(_norm).eq(_norm(team["name"]))
+    first_ids = set(
+        selected_games.loc[matches]
+        .sort_values(["date", "gameid"], kind="stable")
+        .head(3)["gameid"]
+        .astype(str)
+    )
+    if not first_ids:
+        return "none"
+    team_rows = players.loc[
+        players["gameid"].astype(str).isin(first_ids)
+        & players["position"].astype("string").str.lower().ne("team")
+    ]
+    if team.get("teamid"):
+        team_rows = team_rows.loc[
+            team_rows["teamid"].astype("string").eq(str(team["teamid"]))
+        ]
+    else:
+        team_rows = team_rows.loc[
+            team_rows["teamname"].map(_norm).eq(_norm(team["name"]))
+        ]
+    changes = []
+    for role, role_rows in team_rows.groupby("position", sort=False):
+        counts = role_rows["player_key"].astype(str).value_counts()
+        if len(counts) > 1:
+            names = (
+                role_rows.drop_duplicates("player_key")
+                .set_index("player_key")["playername"]
+                .to_dict()
+            )
+            changes.append(
+                f"{role}: "
+                + ", ".join(
+                    f"{names.get(key, key)} ({count})" for key, count in counts.items()
+                )
+            )
+    return "; ".join(changes) if changes else "none"
+
+
+def print_roster_change_sample(
+    games: pd.DataFrame,
+    players: pd.DataFrame,
+    seasons: range = range(2020, 2027),
+    sample_size: int = 15,
+    seed: int = 2027,
+) -> None:
+    """Print random roster pairs and substitutions visible in the first three games."""
+    domestic = {
+        entry if isinstance(entry, str) else entry["name"]
+        for entry in load_leagues()["tier1_domestic"]
+    }
+    candidates = []
+    for season in seasons:
+        previous = {
+            _org_key(team.get("teamid"), team["name"]): team
+            for team in _season_rosters_from_games(
+                games, players, season - 1, domestic, most_recent=True
+            )
+        }
+        current = _season_rosters_from_games(games, players, season, domestic)
+        for team in current:
+            old = previous.get(_org_key(team.get("teamid"), team["name"]))
+            candidates.append(
+                {
+                    "season": season,
+                    "league": team["league"],
+                    "team": team,
+                    "previous": old["starters"] if old else None,
+                    "changes": _roster_change_count(
+                        old["starters"] if old else None, team["starters"]
+                    ),
+                }
+            )
+    sample = pd.DataFrame(candidates).sample(
+        min(sample_size, len(candidates)), random_state=seed
+    )
+    print(f"Random roster-change sanity sample (n={len(sample)}, seed={seed}):")
+    for row in sample.itertuples(index=False):
+        print(
+            f"{row.season} {row.league} {row.team['name']}: "
+            f"{row.changes} changed players; first-three substitutions: "
+            f"{_first_three_substitutions(games, players, row.season, row.team)}\n"
+            f"  previous: {_format_lineup(row.previous)}\n"
+            f"  new:      {_format_lineup(row.team['starters'])}"
+        )
+
+
 def _team_actual_rates(games: pd.DataFrame, season: int, league: str) -> pd.DataFrame:
     regular = games.loc[
         pd.to_numeric(games["year"], errors="coerce").eq(season)
@@ -736,9 +865,13 @@ def run_backtest(
     leagues_config: dict,
     fitted_priors: dict,
     seasons: range = range(2020, 2027),
+    lower_history: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Backtest roster strength against actual regular-season game win rates."""
-    lower_history = load_or_build_lower_history(all_games, all_players, model_config)
+    if lower_history is None:
+        lower_history = load_or_build_lower_history(
+            all_games, all_players, model_config
+        )
     domestic = {
         entry if isinstance(entry, str) else entry["name"]
         for entry in leagues_config["tier1_domestic"]
@@ -842,14 +975,9 @@ def run_backtest(
                 for item in previous_rosters
             }
             cohort["roster_changes"] = cohort.apply(
-                lambda row: (
-                    5
-                    if row["teamkey"] not in previous_by_key
-                    else sum(
-                        _starter_identity(previous_by_key[row["teamkey"]].get(role))
-                        != _starter_identity(row["starter_keys"].get(role))
-                        for role in ROLES
-                    )
+                lambda row: _roster_change_count(
+                    previous_by_key.get(row["teamkey"]),
+                    row["starter_keys"],
                 ),
                 axis=1,
             )
@@ -980,8 +1108,11 @@ def main_project(argv: list[str] | None = None) -> None:
 def main_backtest(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Backtest roster projections")
     parser.add_argument("--notes", default="notes/backtest.md")
+    parser.add_argument("--sanity-sample", type=int, default=15)
     args = parser.parse_args(argv)
     games, players, all_games, all_players = _load_inputs()
+    if args.sanity_sample > 0:
+        print_roster_change_sample(games, players, sample_size=args.sanity_sample)
     model = load_model_config()
     leagues = load_leagues()
     fitted = load_fitted_priors()
@@ -989,6 +1120,9 @@ def main_backtest(argv: list[str] | None = None) -> None:
         games, players, all_games, all_players, model, leagues, fitted
     )
     print(results.to_string(index=False, float_format=lambda value: f"{value:.4f}"))
+    summary_path = Path("data/processed/backtest_summary.csv")
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+    results.to_csv(summary_path, index=False)
     output = Path(args.notes)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(

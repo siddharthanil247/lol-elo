@@ -439,6 +439,7 @@ def run_player_elo(
                             "rating": player_ratings[player_key],
                             "league_mean": league_mean,
                             "games_played": games_played[player_key],
+                            "region": player_regions.get(player_key),
                         }
                     )
         if season_key is not None and last_position_by_year[season] == position:

@@ -4,7 +4,7 @@ For each season 2020–2026, ratings and rookie-prior fits use only games and de
 
 | cohort | league | method | teams | spearman | mae |
 | --- | --- | --- | --- | --- | --- |
-| all teams | overall | player projection | 486 | 0.6070 | 0.1121 |
+| all teams | overall | player projection | 486 | 0.6071 | 0.1121 |
 | all teams | overall | last season | 486 | 0.4759 | 0.1335 |
 | all teams | overall | team Elo | 486 | 0.4990 | 0.1375 |
 | all teams | CBLOL | player projection | 61 | 0.3882 | 0.1249 |
@@ -31,36 +31,48 @@ For each season 2020–2026, ratings and rookie-prior fits use only games and de
 | all teams | LTA S | player projection | 14 | 0.5780 | 0.1193 |
 | all teams | LTA S | last season | 14 | -0.4472 | 0.1625 |
 | all teams | LTA S | team Elo | 14 | 0.3683 | 0.1518 |
-| all teams | PCS | player projection | 57 | 0.5607 | 0.1776 |
+| all teams | PCS | player projection | 57 | 0.5616 | 0.1775 |
 | all teams | PCS | last season | 57 | 0.6245 | 0.1685 |
 | all teams | PCS | team Elo | 57 | 0.5908 | 0.1665 |
-| 3+ roster changes | overall | player projection | 314 | 0.4493 | 0.1217 |
-| 3+ roster changes | overall | last season | 314 | 0.2642 | 0.1484 |
-| 3+ roster changes | overall | team Elo | 314 | 0.2775 | 0.1485 |
-| 3+ roster changes | CBLOL | player projection | 47 | 0.2297 | 0.1360 |
-| 3+ roster changes | CBLOL | last season | 47 | 0.1118 | 0.1681 |
-| 3+ roster changes | CBLOL | team Elo | 47 | 0.0989 | 0.1627 |
+| 3+ roster changes | overall | player projection | 309 | 0.4438 | 0.1223 |
+| 3+ roster changes | overall | last season | 309 | 0.2568 | 0.1494 |
+| 3+ roster changes | overall | team Elo | 309 | 0.2726 | 0.1491 |
+| 3+ roster changes | CBLOL | player projection | 46 | 0.2071 | 0.1381 |
+| 3+ roster changes | CBLOL | last season | 46 | 0.0858 | 0.1712 |
+| 3+ roster changes | CBLOL | team Elo | 46 | 0.0839 | 0.1636 |
 | 3+ roster changes | LCK | player projection | 45 | 0.6591 | 0.0891 |
 | 3+ roster changes | LCK | last season | 45 | 0.2343 | 0.1342 |
 | 3+ roster changes | LCK | team Elo | 45 | 0.2889 | 0.1498 |
-| 3+ roster changes | LCP | player projection | 17 | 0.0871 | 0.1710 |
+| 3+ roster changes | LCP | player projection | 17 | 0.0871 | 0.1711 |
 | 3+ roster changes | LCP | last season | 17 | 0.1973 | 0.1735 |
 | 3+ roster changes | LCP | team Elo | 17 | 0.2474 | 0.1708 |
 | 3+ roster changes | LCS | player projection | 40 | 0.4810 | 0.1138 |
 | 3+ roster changes | LCS | last season | 40 | 0.4873 | 0.1244 |
 | 3+ roster changes | LCS | team Elo | 40 | 0.4192 | 0.1444 |
-| 3+ roster changes | LEC | player projection | 42 | 0.5090 | 0.1099 |
-| 3+ roster changes | LEC | last season | 42 | 0.0946 | 0.1526 |
-| 3+ roster changes | LEC | team Elo | 42 | 0.1914 | 0.1246 |
-| 3+ roster changes | LPL | player projection | 65 | 0.5789 | 0.0815 |
-| 3+ roster changes | LPL | last season | 65 | 0.3067 | 0.1199 |
-| 3+ roster changes | LPL | team Elo | 65 | 0.3375 | 0.1299 |
+| 3+ roster changes | LEC | player projection | 41 | 0.5067 | 0.1113 |
+| 3+ roster changes | LEC | last season | 41 | 0.0858 | 0.1557 |
+| 3+ roster changes | LEC | team Elo | 41 | 0.1875 | 0.1263 |
+| 3+ roster changes | LPL | player projection | 63 | 0.5551 | 0.0811 |
+| 3+ roster changes | LPL | last season | 63 | 0.2938 | 0.1196 |
+| 3+ roster changes | LPL | team Elo | 63 | 0.3188 | 0.1296 |
 | 3+ roster changes | LTA N | player projection | 8 | 0.2994 | 0.1306 |
 | 3+ roster changes | LTA N | last season | 8 | nan | 0.1764 |
 | 3+ roster changes | LTA N | team Elo | 8 | 0.3019 | 0.1371 |
 | 3+ roster changes | LTA S | player projection | 9 | 0.2667 | 0.1353 |
 | 3+ roster changes | LTA S | last season | 9 | nan | 0.1789 |
 | 3+ roster changes | LTA S | team Elo | 9 | 0.1951 | 0.1482 |
-| 3+ roster changes | PCS | player projection | 41 | 0.3514 | 0.1998 |
-| 3+ roster changes | PCS | last season | 41 | 0.5127 | 0.1830 |
-| 3+ roster changes | PCS | team Elo | 41 | 0.4081 | 0.1818 |
+| 3+ roster changes | PCS | player projection | 40 | 0.3577 | 0.2011 |
+| 3+ roster changes | PCS | last season | 40 | 0.5053 | 0.1851 |
+| 3+ roster changes | PCS | team Elo | 40 | 0.4152 | 0.1837 |
+
+Roster changes count replaced player identities, regardless of role. The
+corrected cohort is 309/486 team-seasons with 3+ changes, down from 314. A
+15-case sample (seed 2027) included first-three-game substitutes; where a
+starter appeared in two of three games, the selected lineup used that majority.
+
+G2 Esports in 2020 changed Caps and Perkz between mid and bot while keeping the
+same five identities. The former role-slot count marked two changes; the new
+player-set count reports zero. In the first three PCS Impunity games of 2023,
+jungler Alex had a one-game source ID followed by a consistent ID in the next
+two games. The one-game ID is now mapped to the established key in
+`data/processed/player_aliases.csv`; the selected lineup uses the 2-of-3 key.
