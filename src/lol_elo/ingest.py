@@ -33,11 +33,14 @@ CORE_COLUMNS = [
 ]
 GAME_COLUMNS = [
     "gameid",
+    "game",
+    "playoffs",
     "blue_team",
     "blue_team_id",
     "red_team",
     "red_team_id",
     "winner",
+    "winner_team_id",
     "date",
     "league",
     "year",
@@ -82,7 +85,9 @@ def _load_aliases(processed_dir: Path) -> dict[str, str]:
     aliases = pd.read_csv(alias_path, dtype="string").dropna(
         subset=["player_alias", "canonical_player_key"]
     )
-    return dict(zip(aliases["player_alias"], aliases["canonical_player_key"], strict=True))
+    return dict(
+        zip(aliases["player_alias"], aliases["canonical_player_key"], strict=True)
+    )
 
 
 def _build_games(
@@ -145,11 +150,11 @@ def _build_games(
     red = team_rows.loc[team_rows["_side"].eq("red"), team_columns].rename(
         columns={"teamname": "red_team", "teamid": "red_team_id"}
     )[["gameid", "red_team", "red_team_id"]]
-    winners = team_rows.loc[team_rows["_winner"], ["gameid", "teamname"]].rename(
-        columns={"teamname": "winner"}
-    )
+    winners = team_rows.loc[
+        team_rows["_winner"], ["gameid", "teamname", "teamid"]
+    ].rename(columns={"teamname": "winner", "teamid": "winner_team_id"})
     metadata = raw.drop_duplicates("gameid", keep="first")[
-        ["gameid", "date", "league", "year"]
+        ["gameid", "game", "playoffs", "date", "league", "year"]
     ]
     games = (
         metadata.merge(blue, on="gameid", how="inner", sort=False)
@@ -188,7 +193,10 @@ def _filter_international_teams(
     dropped = international[["league", "year"]].copy()
     dropped["dropped_games"] = 0
 
-    if config.get("international_require_tier1_teams", False) and not international.empty:
+    if (
+        config.get("international_require_tier1_teams", False)
+        and not international.empty
+    ):
         domestic_blue = domestic[["year", "blue_team_id", "blue_team"]].rename(
             columns={"blue_team_id": "team_id", "blue_team": "team_name"}
         )
@@ -283,7 +291,9 @@ def ingest(
         players_unfiltered["date"], errors="coerce"
     )
     player_ids = players_unfiltered["playerid"].astype("string").str.strip()
-    player_names = players_unfiltered["playername"].astype("string").str.strip().str.lower()
+    player_names = (
+        players_unfiltered["playername"].astype("string").str.strip().str.lower()
+    )
     id_keys = "playerid:" + player_ids
     name_keys = "name:" + player_names
     id_keys = id_keys.mask(player_ids.isna() | player_ids.eq(""))
@@ -319,9 +329,9 @@ def ingest(
     players_unfiltered = players_unfiltered.sort_values(
         "date", kind="stable", na_position="last"
     ).reset_index(drop=True)
-    players = players.sort_values("date", kind="stable", na_position="last").reset_index(
-        drop=True
-    )
+    players = players.sort_values(
+        "date", kind="stable", na_position="last"
+    ).reset_index(drop=True)
 
     games.to_parquet(processed_dir / "games.parquet", index=False)
     players.to_parquet(processed_dir / "players.parquet", index=False)

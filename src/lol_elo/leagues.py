@@ -14,7 +14,9 @@ def load_leagues(config_path: str | Path = DEFAULT_CONFIG_PATH) -> dict[str, Any
     with Path(config_path).open(encoding="utf-8") as config_file:
         config = yaml.safe_load(config_file)
 
-    if not isinstance(config, dict) or not isinstance(config.get("tier1_domestic"), list):
+    if not isinstance(config, dict) or not isinstance(
+        config.get("tier1_domestic"), list
+    ):
         raise ValueError("League config must contain a tier1_domestic list")
     if not isinstance(config.get("international"), list):
         raise ValueError("League config must contain an international list")

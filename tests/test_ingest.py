@@ -1,8 +1,7 @@
-from pathlib import Path
 import shutil
+from pathlib import Path
 
 from lol_elo.ingest import ingest
-
 
 FIXTURE = Path(__file__).parent / "fixtures" / "ingest_matches.csv"
 WORLDS_FIXTURE = Path(__file__).parent / "fixtures" / "worlds_matches.csv"
@@ -42,7 +41,9 @@ def test_international_games_require_two_tier1_teams(tmp_path: Path) -> None:
 
     assert "wld-out" not in result.games["gameid"].tolist()
     assert "wld-in" in result.games["gameid"].tolist()
-    assert result.games.loc[result.games["gameid"].eq("wld-in"), "is_international"].all()
+    assert result.games.loc[
+        result.games["gameid"].eq("wld-in"), "is_international"
+    ].all()
     assert result.international_drops.to_dict("records") == [
         {"league": "WLDs", "year": 2024, "dropped_games": 1}
     ]

@@ -1,0 +1,32 @@
+k_factor: 32
+starting_rating: 1500
+blue_side_advantage: 25
+
+# Series formats can be edited as league seasons change. Observed game numbers
+# extend a configured format when a series contains more games than expected.
+series_formats:
+  default:
+    regular: 3
+    playoffs: 5
+  leagues:
+    LEC:
+      regular: 1
+      playoffs: 5
+    LCS:
+      regular: 1
+      playoffs: 5
+    EU LCS:
+      regular: 1
+      playoffs: 5
+    NA LCS:
+      regular: 1
+      playoffs: 5
+    WLDs:
+      regular: 1
+      playoffs: 5
+    EWC:
+      regular: 1
+      playoffs: 5
+    MSC:
+      regular: 1
+      playoffs: 5

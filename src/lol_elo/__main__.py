@@ -3,6 +3,7 @@
 import argparse
 import sys
 
+from lol_elo.baseline import main as run_baseline
 from lol_elo.ingest import main as run_ingest
 
 
@@ -11,9 +12,13 @@ def main() -> None:
         sys.argv = [sys.argv[0], *sys.argv[2:]]
         run_ingest()
         return
+    if len(sys.argv) > 1 and sys.argv[1] == "baseline":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        run_baseline()
+        return
 
     parser = argparse.ArgumentParser(prog="python -m lol_elo")
-    parser.add_argument("command", choices=["ingest"])
+    parser.add_argument("command", choices=["ingest", "baseline"])
     parser.parse_args()
 
 
