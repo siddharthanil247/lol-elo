@@ -98,6 +98,19 @@ def _weighted_team_rating(
     ) / weight_total
 
 
+def _recent_player_keys(players: pd.DataFrame, games: pd.DataFrame) -> set[str]:
+    """Return identities active in the 365 days before the latest game date."""
+    if games.empty or "date" not in games or "date" not in players:
+        return set()
+    latest_game = pd.to_datetime(games["date"], errors="coerce").max()
+    if pd.isna(latest_game):
+        return set()
+    cutoff = latest_game - pd.Timedelta(days=365)
+    player_dates = pd.to_datetime(players["date"], errors="coerce")
+    active = player_dates.between(cutoff, latest_game, inclusive="both")
+    return set(players.loc[active, "player_key"].dropna().astype(str))
+
+
 def run_player_elo(
     games: pd.DataFrame,
     players: pd.DataFrame,
@@ -214,11 +227,7 @@ def run_player_elo(
             for player_key, role in roster:
                 played = games_played.get(player_key, 0)
                 shrink = max(k_min_ratio, 1 / (1 + played / k_decay))
-                player_delta = (
-                    k_base * side_error
-                    * role_weights[role]
-                    * shrink
-                )
+                player_delta = k_base * side_error * role_weights[role] * shrink
                 player_ratings[player_key] = (
                     player_ratings.get(player_key, starting_rating) + player_delta
                 )
@@ -240,8 +249,8 @@ def run_player_elo(
                 "predicted_blue_win_prob": probability,
                 "blue_rating_pre": blue_pre,
                 "red_rating_pre": red_pre,
-                    "rating_change_blue": blue_change,
-                    "rating_change_red": red_change,
+                "rating_change_blue": blue_change,
+                "rating_change_red": red_change,
                 "blue_continuity_starters": blue_continuity,
                 "red_continuity_starters": red_continuity,
                 "scored": start_year is None
@@ -338,6 +347,11 @@ def main() -> None:
     parser.add_argument(
         "--predictions", default="data/processed/player_preds.parquet"
     )
+    parser.add_argument(
+        "--all-time",
+        action="store_true",
+        help="Include inactive players in the role ranking output",
+    )
     parser.add_argument("--model-config", default=str(DEFAULT_MODEL_CONFIG_PATH))
     args = parser.parse_args()
 
@@ -413,9 +427,20 @@ def main() -> None:
         print(evaluation.series_metrics.to_string(index=False))
     print("\nPlayer Elo vs team Elo on the same scored games:")
     print(comparison.to_string(index=False))
-    print("\nTop 10 players per role by current rating:")
+    role_ratings = result.role_ratings
+    if not args.all_time:
+        active_keys = _recent_player_keys(players, games)
+        role_ratings = role_ratings.loc[role_ratings["player_key"].isin(active_keys)]
+        latest_game = pd.to_datetime(games["date"], errors="coerce").max()
+        cutoff = latest_game - pd.Timedelta(days=365)
+        print(
+            "\nTop 10 players per role by current rating "
+            f"(active since {cutoff:%Y-%m-%d}):"
+        )
+    else:
+        print("\nTop 10 players per role by current rating (all time):")
     for role in ROLES:
-        top = result.role_ratings.loc[result.role_ratings["role"].eq(role)].head(10)
+        top = role_ratings.loc[role_ratings["role"].eq(role)].head(10)
         print(f"\n{role}:")
         print(
             top[["playername", "player_key", "rating", "games_played"]].to_string(

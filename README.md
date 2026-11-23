@@ -24,4 +24,9 @@ Run `python -m lol_elo player --start-year 2019` to evaluate the player-level
 model against the team Elo predictions on the same scored games. Role weights,
 experience shrinkage, and roster continuity settings are also in
 `config/model.yaml`; predictions are written to
-`data/processed/player_preds.parquet`.
+`data/processed/player_preds.parquet`. Role rankings include players active in
+the 365 days before the latest game; pass `--all-time` to include everyone.
+
+Run `python -m lol_elo lookup NAME [NAME ...]` to inspect matching player
+identities, ratings, role counts, teams, and first/last game dates. Name matching
+ignores case and accepts partial names.
