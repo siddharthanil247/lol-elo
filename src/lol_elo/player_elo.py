@@ -28,6 +28,7 @@ class PlayerEloResult(NamedTuple):
     role_ratings: pd.DataFrame
     region_offsets: dict[str, float]
     region_offset_history: pd.DataFrame
+    rating_history: pd.DataFrame
 
 
 def _win_probability(
@@ -44,8 +45,10 @@ def _convert_player_region_rating(
     region_offsets: dict[str, float],
 ) -> float:
     """Convert a player rating while preserving player-plus-region strength."""
-    return rating + region_offsets.get(old_region, 0.0) - region_offsets.get(
-        new_region, 0.0
+    return (
+        rating
+        + region_offsets.get(old_region, 0.0)
+        - region_offsets.get(new_region, 0.0)
     )
 
 
@@ -107,10 +110,13 @@ def _weighted_team_rating(
     weight_total = sum(weights)
     if weight_total <= 0:
         raise ValueError("The five role weights must sum to a positive number")
-    return sum(
-        player_ratings.get(player_key, starting_rating) * weight
-        for (player_key, _), weight in zip(roster, weights, strict=True)
-    ) / weight_total
+    return (
+        sum(
+            player_ratings.get(player_key, starting_rating) * weight
+            for (player_key, _), weight in zip(roster, weights, strict=True)
+        )
+        / weight_total
+    )
 
 
 def _recent_player_keys(players: pd.DataFrame, games: pd.DataFrame) -> set[str]:
@@ -140,6 +146,8 @@ def run_player_elo(
     config: dict | None = None,
     start_year: int | None = None,
     leagues_config: dict | None = None,
+    initial_ratings: dict[str, float] | None = None,
+    record_history: bool = False,
 ) -> PlayerEloResult:
     """Predict games from participating-player ratings, then update those players."""
     config = config or load_model_config()
@@ -206,6 +214,7 @@ def run_player_elo(
     else:
         player_names = {}
     player_ratings: dict[str, float] = {}
+    initial_ratings = initial_ratings or {}
     games_played: dict[str, int] = {}
     latest_roles: dict[str, str] = {}
     team_history: dict[str, deque[frozenset[str]]] = {}
@@ -214,6 +223,7 @@ def run_player_elo(
     seen_seasons: dict[str, set[object]] = {}
     season_games_played: dict[tuple[str, object], int] = {}
     predictions = []
+    rating_history = []
     offset_snapshots = []
     last_position_by_year = {}
     for position, season in enumerate(ordered["year"]):
@@ -256,14 +266,21 @@ def run_player_elo(
             (red_roster, red_region),
         ):
             for player_key, _ in roster:
+                if player_key not in player_ratings:
+                    player_ratings[player_key] = float(
+                        initial_ratings.get(player_key, starting_rating)
+                    )
                 if offseason_enabled and season_key is not None:
                     player_seasons = seen_seasons.setdefault(player_key, set())
-                    if season_key not in player_seasons:
+                    if (
+                        season_key not in player_seasons
+                        and games_played.get(player_key, 0) > 0
+                    ):
                         old_rating = player_ratings.get(player_key, starting_rating)
                         player_ratings[player_key] = starting_rating + (
                             old_rating - starting_rating
                         ) * (1 - regress_frac)
-                        player_seasons.add(season_key)
+                    player_seasons.add(season_key)
                 if region_enabled and region is not None:
                     old_region = player_regions.get(player_key)
                     if old_region is not None and old_region != region:
@@ -311,6 +328,10 @@ def run_player_elo(
         red_pre += red_region_offset_pre
         probability = _win_probability(blue_pre, red_pre, blue_advantage)
         blue_error = actual_blue_win - probability
+        rookie_game = any(
+            games_played.get(player_key, 0) < 20
+            for player_key, _ in blue_roster + red_roster
+        )
 
         blue_change = 0.0
         red_change = 0.0
@@ -385,6 +406,7 @@ def run_player_elo(
                 "winner_team_key": winner_key,
                 "actual_blue_win": actual_blue_win,
                 "predicted_blue_win_prob": probability,
+                "rookie_game": rookie_game,
                 "blue_rating_pre": blue_pre,
                 "red_rating_pre": red_pre,
                 "blue_region": blue_region,
@@ -396,10 +418,29 @@ def run_player_elo(
                 "rating_change_red": red_change,
                 "blue_continuity_starters": blue_continuity,
                 "red_continuity_starters": red_continuity,
-                "scored": start_year is None
-                or (pd.notna(year) and year >= start_year),
+                "scored": start_year is None or (pd.notna(year) and year >= start_year),
             }
         )
+        if record_history:
+            league_mean = (
+                sum(player_ratings.values()) / len(player_ratings)
+                if player_ratings
+                else starting_rating
+            )
+            for roster in (blue_roster, red_roster):
+                for player_key, _ in roster:
+                    rating_history.append(
+                        {
+                            "player_key": player_key,
+                            "date": values["date"],
+                            "gameid": gameid,
+                            "league": league,
+                            "year": year,
+                            "rating": player_ratings[player_key],
+                            "league_mean": league_mean,
+                            "games_played": games_played[player_key],
+                        }
+                    )
         if season_key is not None and last_position_by_year[season] == position:
             offset_snapshots.extend(
                 {"year": season_key, "region": region, "offset": offset}
@@ -416,10 +457,14 @@ def run_player_elo(
         }
         for player_key, rating in player_ratings.items()
     ]
-    ratings = pd.DataFrame(
-        rating_rows,
-        columns=["player_key", "playername", "rating", "games_played", "region"],
-    ).sort_values("rating", ascending=False, kind="stable").reset_index(drop=True)
+    ratings = (
+        pd.DataFrame(
+            rating_rows,
+            columns=["player_key", "playername", "rating", "games_played", "region"],
+        )
+        .sort_values("rating", ascending=False, kind="stable")
+        .reset_index(drop=True)
+    )
     role_rows = [
         {
             "player_key": player_key,
@@ -440,6 +485,7 @@ def run_player_elo(
         role_ratings,
         region_offsets,
         pd.DataFrame(offset_snapshots, columns=["year", "region", "offset"]),
+        pd.DataFrame(rating_history),
     )
 
 
@@ -500,9 +546,7 @@ def main() -> None:
         "--baseline-predictions",
         default="data/processed/baseline_preds.parquet",
     )
-    parser.add_argument(
-        "--predictions", default="data/processed/player_preds.parquet"
-    )
+    parser.add_argument("--predictions", default="data/processed/player_preds.parquet")
     parser.add_argument(
         "--all-time",
         action="store_true",
@@ -515,7 +559,28 @@ def main() -> None:
     players = pd.read_parquet(args.players)
     baseline_predictions = pd.read_parquet(args.baseline_predictions)
     config = load_model_config(args.model_config)
-    result = run_player_elo(games, players, config, start_year=args.start_year)
+    initial_ratings = None
+    if config.get("use_rookie_priors", False):
+        from lol_elo.priors import (
+            build_initial_rookie_ratings,
+            load_fitted_priors,
+            load_or_build_lower_history,
+        )
+
+        lower_games = pd.read_parquet("data/processed/games_unfiltered.parquet")
+        lower_players = pd.read_parquet("data/processed/players_unfiltered.parquet")
+        lower_history = load_or_build_lower_history(lower_games, lower_players, config)
+        fitted = load_fitted_priors()
+        initial_ratings = build_initial_rookie_ratings(
+            games, players, lower_history, fitted
+        )
+    result = run_player_elo(
+        games,
+        players,
+        config,
+        start_year=args.start_year,
+        initial_ratings=initial_ratings,
+    )
     evaluation = evaluate_predictions(
         result.predictions, config, start_year=args.start_year
     )
@@ -601,25 +666,40 @@ def main() -> None:
     else:
         print("No configured regions.")
 
-    role_ratings = result.role_ratings
+    role_ratings = result.role_ratings.merge(
+        result.ratings[["player_key", "region"]], on="player_key", how="left"
+    )
+    role_ratings["effective_rating"] = role_ratings["rating"] + role_ratings[
+        "region"
+    ].map(result.region_offsets).fillna(0.0)
+    role_ratings = role_ratings.sort_values(
+        ["role", "effective_rating"], ascending=[True, False], kind="stable"
+    )
     if not args.all_time:
         active_keys = _recent_player_keys(players, games)
         role_ratings = role_ratings.loc[role_ratings["player_key"].isin(active_keys)]
         latest_game = pd.to_datetime(games["date"], errors="coerce").max()
         cutoff = latest_game - pd.Timedelta(days=365)
         print(
-            "\nTop 10 players per role by current rating "
+            "\nTop 10 players per role by effective rating "
             f"(active since {cutoff:%Y-%m-%d}):"
         )
     else:
-        print("\nTop 10 players per role by current rating (all time):")
+        print("\nTop 10 players per role by effective rating (all time):")
     for role in ROLES:
         top = role_ratings.loc[role_ratings["role"].eq(role)].head(10)
         print(f"\n{role}:")
         print(
-            top[["playername", "player_key", "rating", "games_played"]].to_string(
-                index=False
-            )
+            top[
+                [
+                    "playername",
+                    "player_key",
+                    "rating",
+                    "region",
+                    "effective_rating",
+                    "games_played",
+                ]
+            ].to_string(index=False)
         )
     print(f"\nSaved predictions to {output_path}")
     if args.start_year is not None:

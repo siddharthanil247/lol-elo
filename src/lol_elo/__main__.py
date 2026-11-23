@@ -8,6 +8,7 @@ from lol_elo.baseline import main as run_baseline
 from lol_elo.ingest import main as run_ingest
 from lol_elo.lookup import main as run_lookup
 from lol_elo.player_elo import main as run_player
+from lol_elo.priors import main as run_priors
 
 
 def main() -> None:
@@ -31,10 +32,15 @@ def main() -> None:
         sys.argv = [sys.argv[0], *sys.argv[2:]]
         run_ablation()
         return
+    if len(sys.argv) > 1 and sys.argv[1] == "priors":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        run_priors()
+        return
 
     parser = argparse.ArgumentParser(prog="python -m lol_elo")
     parser.add_argument(
-        "command", choices=["ingest", "baseline", "player", "lookup", "ablate"]
+        "command",
+        choices=["ingest", "baseline", "player", "lookup", "ablate", "priors"],
     )
     parser.parse_args()
 

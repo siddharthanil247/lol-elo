@@ -25,7 +25,26 @@ def main() -> None:
         raise ValueError("Ingested players data must include playername and player_key")
 
     config = load_model_config(args.model_config)
-    ratings = run_player_elo(games, players, config).ratings.set_index("player_key")
+    initial_ratings = None
+    if config.get("use_rookie_priors", False):
+        from lol_elo.priors import (
+            build_initial_rookie_ratings,
+            load_fitted_priors,
+            load_or_build_lower_history,
+        )
+
+        lower_games = pd.read_parquet("data/processed/games_unfiltered.parquet")
+        lower_players = pd.read_parquet("data/processed/players_unfiltered.parquet")
+        lower_history = load_or_build_lower_history(lower_games, lower_players, config)
+        initial_ratings = build_initial_rookie_ratings(
+            games, players, lower_history, load_fitted_priors()
+        )
+    result = run_player_elo(games, players, config, initial_ratings=initial_ratings)
+    ratings = result.ratings.copy()
+    ratings["effective_rating"] = ratings["rating"] + ratings["region"].map(
+        result.region_offsets
+    ).fillna(0.0)
+    ratings = ratings.set_index("player_key")
     players = players.copy()
     players["_search_name"] = players["playername"].astype("string")
     players["_position"] = players["position"].astype("string").str.strip().str.lower()
@@ -58,9 +77,7 @@ def main() -> None:
             role_summary = ", ".join(
                 f"{role}: {count}" for role, count in role_counts.items()
             )
-            teams = history[["teamname", "teamid"]].drop_duplicates().dropna(
-                how="all"
-            )
+            teams = history[["teamname", "teamid"]].drop_duplicates().dropna(how="all")
             team_summary = ", ".join(
                 f"{row.teamname} ({row.teamid})"
                 if pd.notna(row.teamid)
@@ -71,25 +88,27 @@ def main() -> None:
             if player_key not in ratings.index:
                 rating = float("nan")
                 games_played = 0
+                region = None
+                effective_rating = float("nan")
             else:
                 rating = float(ratings.loc[player_key, "rating"])
                 games_played = int(ratings.loc[player_key, "games_played"])
+                region = ratings.loc[player_key, "region"]
+                effective_rating = float(ratings.loc[player_key, "effective_rating"])
             first_game = history["_date"].min()
             last_game = history["_date"].max()
             first_text = (
-                first_game.strftime("%Y-%m-%d")
-                if pd.notna(first_game)
-                else "unknown"
+                first_game.strftime("%Y-%m-%d") if pd.notna(first_game) else "unknown"
             )
             last_text = (
-                last_game.strftime("%Y-%m-%d")
-                if pd.notna(last_game)
-                else "unknown"
+                last_game.strftime("%Y-%m-%d") if pd.notna(last_game) else "unknown"
             )
 
             print(f"  player_key: {player_key}")
             print(f"  playernames: {', '.join(names)}")
             print(f"  rating: {rating:.2f}")
+            print(f"  region: {region if pd.notna(region) else 'unknown'}")
+            print(f"  effective_rating: {effective_rating:.2f}")
             print(f"  games_played: {games_played}")
             print(f"  roles: {role_summary or 'none'}")
             print(f"  teams: {team_summary or 'none'}")
