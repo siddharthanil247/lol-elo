@@ -1,0 +1,26 @@
+# Historical names are included because this list is matched against every year of data.
+tier1_domestic:
+  - LCK
+  - OGN
+  - LPL
+  - LEC
+  - EU LCS
+  - LCS
+  - NA LCS
+  - LTA N
+  - LTA S
+  - LTA
+  - CBLOL
+  - LCP
+  - name: LMS
+    end_year: 2019
+  - name: PCS
+    start_year: 2020
+    end_year: 2024
+
+international:
+  - WLDs
+  - MSI
+  - FST
+  - EWC
+  - MSC
